@@ -72,7 +72,7 @@ cdef class vec3iter:
     cdef int idx
     cdef object v
 
-    def __new__(self, v):
+    def __cinit__(self, v):
         self.idx = 0
         self.v   = v
 
@@ -105,7 +105,7 @@ cdef class vec3:
 
     cdef double x,y,z
 
-    def __new__(self, *args):
+    def __cinit__(self, *args):
         """Constructor.
 
         There are several possibilities how to initialize a vector:
@@ -805,7 +805,7 @@ cdef class vec4iter:
     cdef int idx
     cdef object v
 
-    def __new__(self, v):
+    def __cinit__(self, v):
         self.idx = 0
         self.v   = v
 
@@ -837,7 +837,7 @@ cdef class vec4:
 
     cdef double x,y,z,w
 
-    def __new__(self, *args):
+    def __cinit__(self, *args):
         """Constructor.
 
         There are several possibilities how to initialize a vector:
@@ -1424,7 +1424,7 @@ cdef class mat3iter:
     cdef int idx
     cdef object m
 
-    def __new__(self, m):
+    def __cinit__(self, m):
         self.idx = 0
         self.m   = m
 
@@ -1451,7 +1451,7 @@ cdef class mat3:
     cdef double m21, m22, m23
     cdef double m31, m32, m33
 
-    def __new__(self, *args):
+    def __cinit__(self, *args):
         """Constructor.
 
         There are several possibilities how to initialize a matrix,
@@ -2509,7 +2509,7 @@ cdef class mat4iter:
     cdef int idx
     cdef object m
 
-    def __new__(self, m):
+    def __cinit__(self, m):
         self.idx = 0
         self.m   = m
 
@@ -2574,7 +2574,7 @@ cdef class mat4:
     cdef double m31, m32, m33, m34
     cdef double m41, m42, m43, m44
 
-    def __new__(self, *args):
+    def __cinit__(self, *args):
         cdef int arglen
         cdef mat4 B
         arglen = len(args)
@@ -4379,7 +4379,7 @@ cdef class quat:
 
     cdef double w,x,y,z
 
-    def __new__(self, *args):
+    def __cinit__(self, *args):
         """Constructor.
 
         0 arguments: zeroes

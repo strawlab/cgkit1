@@ -11,7 +11,6 @@
 
 from distutils.core import setup, Extension
 import shutil, os, sys, os.path, time
-from stat import *
 #from Pyrex.Distutils import build_ext
 
 # Check for an old version of cgtypes
@@ -118,20 +117,10 @@ updateInfoModule()
 
 pyrex_in  = "cgtypes.pyx"
 pyrex_out = "cgtypes.c"
-pyrex_cmd = "pyrexc "+pyrex_in
+pyrex_cmd = "cython "+pyrex_in
 
-# Check if the pyrex output is still up to date or if it has to be generated
-if os.access(pyrex_out, os.F_OK):
-    pytime = os.stat(pyrex_in)[ST_MTIME]
-    ctime  = os.stat(pyrex_out)[ST_MTIME]
-    if pytime>ctime:
-        print "Updating",pyrex_out
-        os.system(pyrex_cmd)
-    else:
-        print pyrex_out,"is up to date"
-else:
-    print "Creating",pyrex_out
-    os.system(pyrex_cmd)
+print "Updating",pyrex_out
+os.system(pyrex_cmd)
 
 setup(name="cgkit",
       version="1.2.0",
