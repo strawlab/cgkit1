@@ -19,7 +19,7 @@ from Cython.Build import cythonize
 
 ######################################################################
 
-setup(name="cgkit",
+setup(name="cgkit1",
       version="1.2.0",
       description="Python Computer Graphics Kit",
       author="Matthias Baas",
