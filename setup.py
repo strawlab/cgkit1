@@ -20,7 +20,7 @@ from Cython.Build import cythonize
 ######################################################################
 
 setup(name="cgkit1",
-      version="1.2.0",
+      version="1.2.1", # also update cgkitinfo.py
       description="Python Computer Graphics Kit",
       author="Matthias Baas",
       author_email="baas@ira.uka.de",
