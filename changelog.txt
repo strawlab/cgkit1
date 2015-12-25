@@ -1,0 +1,115 @@
+Changelog
+=========
+
+Changes from cgkit-1.1.0 to cgkit-1.2.0:
+
+- ri.py: RiEnd() now always flushes the internal buffer
+- ri.py: Bugfix: RiLightSource() didn't handle parameters passed inside a
+  dictionary.
+- cgtypes: Fixed a typo in quat.fromMat() that was generating a NameError in
+  certain cases.
+- Updated Pyrex which fixed a bug that could lead to a crash in Python 2.2
+  when the garbage collection was running after vectors were unpacked.
+  Python 2.3 was not affected by this bug.
+
+
+Changes from cgkit-1.0.1 to cgkit-1.1.0:
+
+- New module "cgkitinfo" that contains release information
+- New module "slparams" that can extract RenderMan shader parameters 
+  from shader source files.
+- sltokenize: Bugfix: The filename that was passed to the tokeneater was
+  containing a trailing apostroph.
+- cgtypes: 
+  * quat.fromAngleAxis() and the corresponding constructor now return a 
+    unit quaternion.
+  * New method quat.dot() that calculates the dot product
+  * New methods quat.exp() and quat.log()
+  * Quats now support the pow() function and ** operator
+  * Two new functions: slerp() and squad() to do quaternion interpolation
+    (Thanks to Max Rheiner)
+- ri.py: The "version" call in the output stream can be suppressed by
+  calling RiOption(RI_RIBOUTPUT, RI_VERSION, 0) directly after RiBegin()
+  is called.
+  (Thanks to Moritz Möller)
+- ri.py: Support for RIB string handles. RiLightSource, RiAreaLightSource and
+  RiObjectBegin support the parameter "__handleid" (RI_HANDLEID) which can be
+  used to support a user defined string handle. RiIlluminate and 
+  RiObjectInstance were modified accordingly so that they can take string 
+  handles.
+  (Thanks to Moritz Möller)
+- ri.py: The version number in the RIB stream is now set to 3.03 instead
+  of 3.2 as this version is not the version of the RI specification but the
+  version of the Byte Stream protocol.
+  (Thanks to Moritz Möller)
+ 
+
+Changes from cgkit-1.0 to cgkit-1.0.1:
+
+- The binary file for Python 2.2 was broken and the source zip contained
+  a modified version of cgtypes.c (which was necessary for Python 2.3, 
+  Pyrex 0.8.2 and VC6, but didn't work on Linux).
+
+Changes from cgkit-1.0beta3 to cgkit-1.0:
+
+- sl.py: Function ptlined() added.
+- sl.py: Doc strings added.
+- cgtypes: mat4: Added a new method orthographic() which is equivalent
+         to the OpenGL command glOrtho().
+- ri.py: The output of any initial RiArchvieRecord() calls will be placed
+         *before* the version information. 
+- ri.py: RiBegin() doesn't output any header information automatically 
+         anymore, you have to do that manually. However, you can use the
+         new utility function RiuDefaultHeader() to output a couple of 
+         entries that can be determined automatically.
+- ri.py: RiArchiveRecord() allows variables $DATE, $CREATOR, $USER in its
+         format string.
+- ri.py: Passing an empty string to RiBegin() has the same effect as
+         passing RI_NULL (the stream will be written to stdout).
+- ri.py: vec3 values can now be used as any 3-sequence.
+- ri.py: vec3 values can now be used as colors (this wasn't possible because
+         vec3 doesn't support slicing). 
+- ri.py: The values of RI_KA, RI_KD, RI_KS and RI_KR are now upper-case.
+- riutil: New function RiuDefaultHeader() which outputs a default header at
+         the top of the RIB stream.
+- riutil: RiuCoordSystem() takes a shader name as optional argument. 
+- riutil: RiuGrid() takes the number of cells, the shader name and the color
+          as optional arguments.
+- sltokenize: Finished tokenizer. Now it actually does what the 
+         documentation says.
+
+
+Changes from cgkit-1.0beta2 to cgkit-1.0beta3:
+
+- noise: Small change in the noise_template function so that older gcc 
+  versions will also compile the module.
+- Rewrite of cgtypes using Pyrex to speed up the types. The old pure 
+  Python cgtypes are still available in pycgtypes.
+  New in cgtypes:
+  * Comparisons are using an epsilon environment. The threshold can be
+    read and written using getEpsilon() and setEpsilon().
+  * vec3/vec4: All comparison operators are supported now (== != < <= > >=)
+  * vec4: The 4th component can be accessed either by name "w" or "t"
+  * mat3/mat4: All methods taking vec3s as input also accept other
+    3-sequences such as ordinary tuples or lists.
+  * mat4: The index operator returns a vec4 when called with a single int.
+  * mat4.perspective() was broken
+  * New method mat4.setMat3()
+
+
+Changes from cgkit-1.0beta1 to cgkit-1.0beta2:
+
+- noise: On Linux the noise module couldn't be imported because the modules'
+  init function couldn't be found. This was due to C++ name mangling. 
+  For some reason, this was no problem under Windows.
+- noise: Complete rewrite of the noise function. Now there are separate
+  implementations for 2D,3D and 4D.
+- noise: New functions: pnoise(), spnoise, cellnoise(), scellnoise(), 
+  fBm(), turbulence(),
+  vnoise(), vsnoise(), vpnoise(), vspnoise(), vcellnoise(), vscellnoise(), 
+  vfBm(), vturbulence()
+- sl.py: Added cellnoise and pnoise
+- vec4.py: Method normalize() added
+- ri.py: Bugfix in RiSolidBegin(): Apostrophes were missing in output
+- riutil.py: Can be imported even if PIL is not installed. The exception
+  will only be raised if a function is called that actually depends on PIL.
