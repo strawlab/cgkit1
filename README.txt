@@ -1,3 +1,8 @@
+This is a fork of Matthias Bass's python-cgkit v1.2.0.
+
+It has been updated to be compatible with Python 2 and 3 and has the
+renderman and noise generation code removed.
+
 ######################################################################
 Python Computer Graphics Kit v1.2.0
 Copyright (C) 2002, Matthias Baas (see license.txt)
