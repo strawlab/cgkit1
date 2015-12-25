@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ######################################################################
 # cgtypes - vec3, vec4, mat3, mat4, quat
 #
@@ -4161,7 +4162,7 @@ cdef class mat4:
         return res
 
     def perspective(self, fovy, aspect, near, far):
-        """von Mesa übernommen (glu.c)"""
+        """von Mesa Ã¼bernommen (glu.c)"""
         cdef double f, a
         cdef double top, bottom, left, right
 
