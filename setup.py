@@ -27,6 +27,5 @@ setup(name="cgkit",
                   "pycgtypes.vec4","pycgtypes.mat4","pycgtypes.quat",
                   "sltokenize","sl","slparams", "_slparser"],
       ext_modules=cythonize([Extension("cgtypes", ["cgtypes.pyx"]),
-                   Extension("noise", ["src/noisemodule.cpp"]),
                    ]),
       )
