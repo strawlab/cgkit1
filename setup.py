@@ -9,6 +9,10 @@
 # specified in the file license.txt.
 ####################################################################
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
 from distutils.core import setup, Extension
 import shutil, os, sys, os.path, time
 from Cython.Build import cythonize

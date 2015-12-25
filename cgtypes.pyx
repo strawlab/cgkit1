@@ -5077,7 +5077,11 @@ def squad(double t, quat a, quat b, quat c, quat d):
 
 ######################################################################
 
-import copy_reg
+import sys
+if sys.version_info[0] >= 3:
+    import copyreg as copy_reg
+else:
+    import copy_reg
 
 def _vec3construct(x,y,z):
     return vec3(x,y,z)
