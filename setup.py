@@ -11,7 +11,7 @@
 
 from distutils.core import setup, Extension
 import shutil, os, sys, os.path, time
-#from Pyrex.Distutils import build_ext
+from Cython.Build import cythonize
 
 # Check for an old version of cgtypes
 exitflag = 0
@@ -115,13 +115,6 @@ def updateInfoModule():
 
 updateInfoModule()
 
-pyrex_in  = "cgtypes.pyx"
-pyrex_out = "cgtypes.c"
-pyrex_cmd = "cython "+pyrex_in
-
-print "Updating",pyrex_out
-os.system(pyrex_cmd)
-
 setup(name="cgkit",
       version="1.2.0",
       description="Python Computer Graphics Kit",
@@ -133,7 +126,7 @@ setup(name="cgkit",
                   "pycgtypes.vec3","pycgtypes.mat3",
                   "pycgtypes.vec4","pycgtypes.mat4","pycgtypes.quat",
                   "sltokenize","sl","slparams", "_slparser"],
-      ext_modules=[Extension("cgtypes", ["cgtypes.c"]),
-                   Extension("noise", ["src/noisemodule.cpp"])
-                   ]
+      ext_modules=cythonize([Extension("cgtypes", ["cgtypes.pyx"]),
+                   Extension("noise", ["src/noisemodule.cpp"]),
+                   ]),
       )
