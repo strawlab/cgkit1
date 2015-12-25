@@ -166,8 +166,8 @@ RIE_SEVERE      = 3
 RIE_NOTOPTIONS  = 25       # Invalid state for options
 RIE_NOTATTRIBS  = 26       # Invalid state for attributes
 RIE_NOTPRIMS    = 27       # Invalid state for primitives
-RIE_ILLSTATE    = 28       # Other invalid state 
-RIE_RANGE       = 42       # Parameter out of range 
+RIE_ILLSTATE    = 28       # Other invalid state
+RIE_RANGE       = 42       # Parameter out of range
 RIE_CONSISTENCY = 43       # Parameters inconsistent
 
 RIE_INVALIDSEQLEN = 80     # A sequence hasn't had the required length
@@ -184,7 +184,7 @@ class RIBStream:
     any "real" Ri calls are made. Output from RiArchiveRecord() will
     be placed before the version number.
     """
-    
+
     def __init__(self, outstream):
         self.out = outstream
         self.output_version = 1
@@ -212,7 +212,7 @@ class RIBStream:
         write().
         """
         self.out.write(data)
-        
+
 
 ###################### Standard error handlers #######################
 
@@ -220,7 +220,7 @@ def RiErrorIgnore(code, severity, message):
     """Standard error handler.
 
     Ignores error messages."""
-    
+
     pass
 
 def RiErrorPrint(code, severity, message):
@@ -231,7 +231,7 @@ def RiErrorPrint(code, severity, message):
     if severity==RIE_WARNING:
         print >> sys.stderr, "WARNING:",
     elif severity==RIE_ERROR or severity==RIE_SEVERE:
-        print >> sys.stderr, "ERROR (%d):"%(code),        
+        print >> sys.stderr, "ERROR (%d):"%(code),
     print >> sys.stderr, message
 
 def RiErrorAbort(code, severity, message):
@@ -307,7 +307,7 @@ def RiErrorHandler(handler):
 # RiBegin
 def RiBegin(name):
     """Starts the main block using a particular rendering method.
-    
+
     The default renderer is selected by passing RI_NULL as name.
     Here this means the output is written to stdout.
     If the name has the extension ".rib" then the output is written into
@@ -362,7 +362,7 @@ def RiEnd():
     global _ribout
 
     _ribout.flush()
-    
+
     if _ribout != sys.stdout:
         _ribout.close()
         _ribout = sys.stdout
@@ -382,7 +382,7 @@ def RiWorldBegin():
 
     if _insideworld:
         _error(RIE_ILLSTATE, RIE_ERROR, "World blocks cannot be nested.")
-    
+
     _ribout.write("WorldBegin\n")
     _insideworld = 1
 
@@ -391,7 +391,7 @@ def RiWorldEnd():
     """Terminates the world block."""
 
     global _insideworld
-    
+
     _ribout.write("WorldEnd\n")
     _insideworld = 0
 
@@ -411,7 +411,7 @@ def RiOption(name, *paramlist, **keyparams):
             if hasattr(_ribout, "output_version"):
                 _ribout.output_version = 0
         return
-            
+
     _ribout.write('Option "'+name+'"'+_paramlist2string(paramlist, keyparams)+"\n")
 
 # RiAttribute
@@ -420,7 +420,7 @@ def RiAttribute(name, *paramlist, **keyparams):
 
     Example: RiAttribute("displacementbound", "sphere", 0.5)
     """
-    
+
     _ribout.write('Attribute "'+name+'"'+_paramlist2string(paramlist, keyparams)+"\n")
 
 # RiAttributeBegin
@@ -431,7 +431,7 @@ def RiAttributeBegin():
              ...
              RiAttributeEnd()
     """
-    
+
     _ribout.write("AttributeBegin\n")
 
 # RiAttributeEnd
@@ -448,7 +448,7 @@ def RiTransformBegin():
              ...
              RiTransformEnd()
     """
-    
+
     _ribout.write("TransformBegin\n")
 
 # RiTransformEnd
@@ -470,17 +470,17 @@ def RiFrameBegin(number):
 
     if _insideframe:
         _error(RIE_ILLSTATE, RIE_ERROR, "Frame blocks cannot be nested.")
-            
+
     _ribout.write("FrameBegin "+`number`+"\n")
     _insideframe = 1
-    
+
 
 # RiFrameEnd
 def RiFrameEnd():
     """Terminates a frame."""
-    
+
     global _insideframe
-    
+
     _ribout.write("FrameEnd\n")
     _insideframe = 0
 
@@ -490,7 +490,7 @@ def RiHider(type, *paramlist, **keyparams):
 
     Example: RiHider(RI_HIDDEN)  (default)
     """
-    
+
     if type==RI_NULL: type="null"
     _ribout.write('Hider "'+type+'"'+_paramlist2string(paramlist, keyparams)+"\n")
 
@@ -699,12 +699,12 @@ def RiBasis(ubasis, ustep, vbasis, vstep):
         ubasis = '"'+ubasis+'"'
     else:
         ubasis = _seq2list(ubasis, 16)
-        
+
     if type(vbasis)==types.StringType:
         vbasis = '"'+vbasis+'"'
     else:
         vbasis = _seq2list(vbasis, 16)
-        
+
     _ribout.write('Basis '+ubasis+' '+`ustep`+' '+vbasis+' '+`vstep`+"\n")
 
 # RiPatch
@@ -741,7 +741,7 @@ def RiPatchMesh(type, nu, uwrap, nv, vwrap, *paramlist, **keyparams):
     _ribout.write('PatchMesh "'+type+'" '+`nu`+' "'+uwrap+'" '+\
                  `nv`+' "'+vwrap+'"'+\
                  _paramlist2string(paramlist, keyparams)+"\n")
-    
+
 
 # RiNuPatch
 def RiNuPatch(nu, uorder, uknot, umin, umax, nv, vorder, vknot, vmin, vmax, *paramlist, **keyparams):
@@ -781,7 +781,7 @@ def RiPoints(*paramlist, **keyparams):
     Number of array elements for primitive variables:
     -------------------------------------------------
     constant: 1              varying: #points
-    uniform:  1              vertex:  #points    
+    uniform:  1              vertex:  #points
     """
 
     _ribout.write('Points'+_paramlist2string(paramlist, keyparams)+"\n")
@@ -821,7 +821,7 @@ def RiSubdivisionMesh(scheme, nverts, vertids, tags, nargs, intargs, floatargs, 
     intargs: The integer arguments.
     floatargs: The float arguments.
     The vertices themselves are stored in the parameter list (parameter "P").
-    
+
 
     Number of array elements for primitive variables:
     -------------------------------------------------
@@ -882,7 +882,7 @@ def RiColorSamples(nRGB, RGBn):
     if len(nRGB)%3!=0 or len(nRGB)==0:
         _error(RIE_CONSISTENCY, RIE_ERROR,
                "The number of values in the transformation matrices must be a multiple of 3.")
-        
+
     _colorsamples = len(nRGB)/3
     _ribout.write('ColorSamples '+_seq2list(nRGB)+' '+_seq2list(RGBn)+'\n')
 
@@ -1152,7 +1152,7 @@ def RiQuantize(type, one, min, max, ditheramplitude):
 
     _ribout.write('Quantize "'+type+'" '+`one`+' '+`min`+' '+`max`+' '+ \
                  `ditheramplitude`+"\n")
-    
+
 
 # RiDepthOfField
 def RiDepthOfField(fstop, focallength, focaldistance):
@@ -1403,7 +1403,7 @@ def RiLightSource(name, *paramlist, **keyparams):
         _lighthandle+=1
         lshandle = _lighthandle
         _ribout.write('LightSource "%s" %d%s\n'%(name, lshandle, _paramlist2string((), keyparams)))
-        
+
     return lshandle
 
 # RiIlluminate
@@ -1417,14 +1417,14 @@ def RiIlluminate(light, onoff):
         _ribout.write('Illuminate "%s" %d\n'%(light, onoff))
     else:
         _ribout.write('Illuminate %d %d\n'%(light, onoff))
-        
+
 
 # RiAreaLightSource
 def RiAreaLightSource(name, *paramlist, **keyparams):
     """Start the definition of an area light and return the light handle.
 
     You can set a user defined string handle via the RI_HANDLEID parameter.
-    
+
     Example: RiAttributeBegin()
              area1 = RiAreaLightSource("arealight", intensity=0.75)
              ....
@@ -1454,7 +1454,7 @@ def RiDeclare(name, declaration):
     class ::= constant | uniform | varying | vertex
     type  ::= float | integer | string | color | point | vector | normal |
               matrix | hpoint
-    
+
     Example: RiDeclare("foo","uniform float")
              RiDeclare("bar","constant integer [4]")
              RiDeclare("mycolor", "varying color")
@@ -1464,7 +1464,7 @@ def RiDeclare(name, declaration):
 
     if declaration==RI_NULL:
         declaration=""
-        
+
     _ribout.write('Declare "'+name+'" "'+declaration+'"\n')
     _declarations[name]=declaration
     return name
@@ -1508,8 +1508,8 @@ def RiArchiveRecord(type, format, *args):
         _ribout.writeArchiveRecord(outstr)
     else:
         _ribout.write(outstr)
-    
-    
+
+
 # RiReadArchive
 def RiReadArchive(filename, callback=None, *ignore):
     """Include an archive file.
@@ -1536,10 +1536,10 @@ def RiProcedural(data, bound, subdividefunc, freefunc):
 
     Example: RiProcedural("mymodel.rib", [-1,1,-1,1,-1,1], \\
                           RiProcDelayedReadArchive, RI_NULL)
-                          
+
              RiProcedural(["python teapot.py",""],[0,1,0,1,0,1], \\
                           RiProcRunProgram, RI_NULL)
-                          
+
              RiProcedural(["teapot.so",""],[0,1,0,1,0,1], \\
                           RiProcDynamicLoad, RI_NULL)
     """
@@ -1570,7 +1570,7 @@ def RiBound(bound):
     """
 
     _ribout.write('Bound '+_seq2list(bound,6)+'\n')
-    
+
 # RiSolidBegin
 def RiSolidBegin(type):
     """Start the definition of a solid object.
@@ -1621,7 +1621,7 @@ def RiObjectBegin(*paramlist, **keyparams):
         _objecthandle+=1
         objhandle = _objecthandle
         _ribout.write('ObjectBegin %d\n'%objhandle)
-    
+
     _insideobject=1
 
     return objhandle
@@ -1631,7 +1631,7 @@ def RiObjectEnd():
     """Terminate the definition of a retained model."""
 
     global _insideobject
-    
+
     _ribout.write('ObjectEnd\n')
     _insideobject=0
 
@@ -1673,7 +1673,7 @@ def RiMakeTexture(picname, texname, swrap, twrap, filterfunc, swidth, twidth, *p
     Example: RiMakeTexture("img.tif", "tex.tif", RI_PERIODIC, RI_CLAMP, \\
                            RiGaussianFilter, 2,2)
     """
-    
+
     _ribout.write('MakeTexture "'+picname+'" "'+texname+'" "'+swrap+'" "'+
                   twrap+'" "'+filterfunc+'" '+`swidth`+' '+`twidth`+
                   _paramlist2string(paramlist, keyparams)+'\n')
@@ -1690,7 +1690,7 @@ def RiMakeLatLongEnvironment(picname, texname, filterfunc, swidth, twidth, *para
     Example: RiMakeLatLongEnvironment("img.tif", "tex.tif",
                                       RiGaussianFilter, 2,2)
     """
-    
+
     _ribout.write('MakeLatLongEnvironment "'+picname+'" "'+texname+'" "'+
                   filterfunc+'" '+`swidth`+' '+`twidth`+
                   _paramlist2string(paramlist, keyparams)+'\n')
@@ -1710,7 +1710,7 @@ def RiMakeCubeFaceEnvironment(px,nx,py,ny,pz,nz, texname, fov, filterfunc, swidt
                                        "pz.tif","nz.tif", "tex.tif", 92.0,
                                         RiGaussianFilter, 2,2)
     """
-    
+
     _ribout.write('MakeCubeFaceEnvironment "'+px+'" "'+nx+'" "'+
                   py+'" "'+ny+'" "'+pz+'" "'+nz+'" "'+ texname+'" '+
                   `fov`+' "'+filterfunc+'" '+`swidth`+' '+`twidth`+
@@ -1722,7 +1722,7 @@ def RiMakeShadow(picname, shadowname, *paramlist, **keyparams):
 
     Example: RiMakeShadow("depthimg.tif", "shadow.tif")
     """
-    
+
     _ribout.write('MakeShadow "'+picname+'" "'+shadowname+'"'+_paramlist2string(paramlist, keyparams)+'\n')
 
 # RiDetail
@@ -1754,7 +1754,7 @@ def RiDetailRange(minvisible, lowertransition, uppertransition, maxvisible):
     minvisible <= lowertransition <= uppertransition <= maxvisible
 
                 lowertransition  uppertransition
- visibility         |____________________|       
+ visibility         |____________________|
     ^               /                    \\
     |              /                      \\
     |_____________/                        \\_____________\\ Level of detail
@@ -1874,7 +1874,7 @@ def _create_new_context():
     else:
         handle = 1
     _contexts[handle]=()
-    
+
     if _current_context!=None:
         _save_context(_current_context)
 
@@ -1883,7 +1883,7 @@ def _create_new_context():
 def _switch_context(handle):
     "Save the current context and make another context the active one."
     global _current_context
-    
+
     if _current_context!=None:
         _save_context(_current_context)
     _current_context = handle
@@ -1976,11 +1976,11 @@ def _flatten(seq):
     """Return a list of the individual items in a (possibly nested) sequence.
 
     If an item is a string it's enclosed in apostrophes.
-    
+
     Example: _flatten( [(1,2,3), (4,5,6)] ) -> [1,2,3,4,5,6]
              _flatten( ("str1","str2") )    -> ['"str1"','"str2"']
     """
-    
+
     res = []
     for v in seq:
         vtype = type(v)
@@ -2007,12 +2007,12 @@ def _seq2list(seq, count=None):
     if count!=None and len(f)!=count:
         _error(RIE_INVALIDSEQLEN, RIE_ERROR, "Invalid sequence length ("+\
                `len(f)`+" instead of "+`count`+")")
-        
+
     return '['+string.join(f)+']'
 
 def _paramlist2dict(paramlist, keyparams):
     """Combine the paramlists (tuple & dict) into one dict.
-    
+
     paramlist is a tuple with function arguments (token/value pairs or
     a dictionary). keyparams is a dictionary with keyword arguments.
     The dictionary keyparams will be modified and returned.
@@ -2021,7 +2021,7 @@ def _paramlist2dict(paramlist, keyparams):
     if len(paramlist)==1 and type(paramlist[0])==types.DictType:
         keyparams = paramlist[0]
         paramlist = ()
-    
+
     # Add the paramlist tuple to the keyword argument dict
     for i in range(len(paramlist)/2):
         token = paramlist[i*2]
@@ -2050,7 +2050,7 @@ def _paramlist2lut(paramlist, keyparams):
         keyparams[tokname]=value
 
     return keyparams
-    
+
 
 def _paramlist2string(paramlist, keyparams={}):
     """Convert the paramlist into a string representation.
@@ -2085,7 +2085,7 @@ def _paramlist2string(paramlist, keyparams={}):
         if not (_declarations.has_key(tokname) or inline!=[]):
             _error(RIE_UNDECLARED,RIE_ERROR,'Parameter "'+tokname+
                    '" is not declared.')
-        
+
         # Token value
         value = keyparams[token]
         # Check if the value is a sequence (if it returns an iterator)
@@ -2123,6 +2123,6 @@ if __name__=='__main__':
 
     RiSkew(45,0,1,0,1,0,0)
     RiSkew(45,[0,1,0],[1,0,0])
-    
+
     RiEnd()
-    
+

@@ -33,7 +33,7 @@ def ShowQuads():
 
     RiTranslate(OFFSET, 0.0, 0.5)
     RiTorus(0.4, 0.15, 0.0, 360, 360)
-    
+
 
 # main()
 

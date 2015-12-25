@@ -36,7 +36,7 @@ class SyntaxError(Exception):
         self.charpos = charpos
         self.msg = msg
         self.context = context
-        
+
     def __str__(self):
         if self.charpos < 0: return 'SyntaxError'
         else: return 'SyntaxError@char%s(%s)' % (repr(self.charpos), self.msg)
@@ -54,9 +54,9 @@ class Scanner:
     it is allowed to return.  In context sensitive mode, this restrict
     set guides the scanner.  In context insensitive mode, there is no
     restriction (the set is always the full set of tokens).
-    
+
     """
-    
+
     def __init__(self, patterns, ignore, input):
         """Initialize the scanner.
 
@@ -76,7 +76,7 @@ class Scanner:
         self.pos = 0
         self.ignore = ignore
         self.first_line_number = 1
-        
+
         if patterns is not None:
             # Compile the regex strings into regex objects
             self.patterns = []
@@ -90,13 +90,13 @@ class Scanner:
     def get_char_pos(self):
         """Get the current char position in the input text."""
         return self.pos
-    
+
     def get_prev_char_pos(self, i=None):
         """Get the previous position (one token back) in the input text."""
         if self.pos == 0: return 0
         if i is None: i = -1
         return self.tokens[i][0]
-    
+
     def get_line_number(self):
         """Get the line number of the current position in the input text."""
         # TODO: make this work at any token/char position
@@ -107,7 +107,7 @@ class Scanner:
         s = self.get_input_scanned()
         i = s.rfind('\n') # may be -1, but that's okay in this case
         return len(s) - (i+1)
-    
+
     def get_input_scanned(self):
         """Get the portion of the input that has been tokenized."""
         return self.input[:self.pos]
@@ -120,14 +120,14 @@ class Scanner:
         """Get the i'th token in the input.
 
         If i is one past the end, then scan for another token.
-        
+
         Args:
 
         restrict : [token, ...] or None; if restrict is None, then any
         token is allowed.  You may call token(i) more than once.
         However, the restrict set may never be larger than what was
         passed in on the first call to token(i).
-        
+
         """
         if i == len(self.tokens):
             self.scan(restrict)
@@ -141,14 +141,14 @@ class Scanner:
                         raise NotImplementedError("Unimplemented: restriction set changed")
             return self.tokens[i]
         raise NoMoreTokens()
-    
+
     def __repr__(self):
         """Print the last 10 tokens that have been scanned in"""
         output = ''
         for t in self.tokens[-10:]:
             output = '%s\n  (@%s)  %s  =  %s' % (output,t[0],t[2],repr(t[3]))
         return output
-    
+
     def scan(self, restrict):
         """Should scan another token and add it to the list, self.tokens,
         and add the restriction to self.restrictions"""
@@ -167,7 +167,7 @@ class Scanner:
                     # We got a match that's better than the previous one
                     best_pat = p
                     best_match = len(m.group(0))
-                    
+
             # If we didn't find anything, raise an error
             if best_pat == '(error)' and best_match < 0:
                 msg = 'Bad Token'
@@ -195,17 +195,17 @@ class Parser:
     """Base class for Yapps-generated parsers.
 
     """
-    
+
     def __init__(self, scanner):
         self._scanner = scanner
         self._pos = 0
-        
+
     def _peek(self, *types):
         """Returns the token type for lookahead; if there are any args
         then the list of args is the set of token types to allow"""
         tok = self._scanner.token(self._pos, types)
         return tok[2]
-        
+
     def _scan(self, type):
         """Returns the matched text, and moves to the next token"""
         tok = self._scanner.token(self._pos, [type])
@@ -221,7 +221,7 @@ class Context:
     contexts can be used for debugging.
 
     """
-    
+
     def __init__(self, parent, scanner, tokenpos, rule, args=()):
         """Create a new context.
 
@@ -244,7 +244,7 @@ class Context:
         if self.parent: output = str(self.parent) + ' > '
         output += self.rule
         return output
-    
+
 def print_line_with_pointer(text, p):
     """Print the line of 'text' that includes position 'p',
     along with a second line with a single caret (^) at position p"""
@@ -276,7 +276,7 @@ def print_line_with_pointer(text, p):
     # Now print the string, along with an indicator
     print >>sys.stderr, '> ',text
     print >>sys.stderr, '> ',' '*p + '^'
-    
+
 def print_error(input, err, scanner):
     """Print error messages, the parser stack, and the input text -- for human-readable error messages."""
     # NOTE: this function assumes 80 columns :-(
@@ -288,7 +288,7 @@ def print_error(input, err, scanner):
     context = err.context
     if not context:
         print_line_with_pointer(input, err.charpos)
-        
+
     while context:
         # TODO: add line number
         print >>sys.stderr, 'while parsing %s%s:' % (context.rule, tuple(context.args))
@@ -304,7 +304,7 @@ def wrap_error_reporter(parser, rule):
     except NoMoreTokens:
         print >>sys.stderr, 'Could not complete parsing; stopped around here:'
         print >>sys.stderr, parser._scanner
-        
+
 ######################################################################
 ######################################################################
 ######################################################################
@@ -321,7 +321,7 @@ yappsrt.NoMoreTokens = NoMoreTokens
 yappsrt.wrap_error_reporter = wrap_error_reporter
 
 ######################################################################
-        
+
 # The following is generated by Yapps2.1.1:
 
 class _SLParserBaseScanner(yappsrt.Scanner):

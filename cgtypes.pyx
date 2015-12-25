@@ -60,7 +60,7 @@ def setEpsilon(e):
 def getEpsilon():
     """Return the epsilon threshold which is used for doing comparisons."""
     return eps
-   
+
 
 ######################################################################
 
@@ -70,7 +70,7 @@ cdef class vec3iter:
     """vec3 iterator."""
     cdef int idx
     cdef object v
-    
+
     def __new__(self, v):
         self.idx = 0
         self.v   = v
@@ -90,7 +90,7 @@ cdef class vec3iter:
             return self.v.z
         else:
             raise StopIteration
-        
+
 
 # vec3
 cdef class vec3:
@@ -123,12 +123,12 @@ cdef class vec3:
         specify them as a string:
 
         v = vec3([1,2,3]) -> v = <1,2,3>
-        v = vec3("4,5")   -> v = <4,5,0>        
+        v = vec3("4,5")   -> v = <4,5,0>
         """
         cdef int arglen, seqlen
         cdef vec3 v
         arglen = len(args)
-        
+
         if arglen==0:
             self.x = 0.0
             self.y = 0.0
@@ -167,7 +167,7 @@ cdef class vec3:
                     seqlen = len(seq)
                 except:
                     raise TypeError,"vec3() arg can't be converted to vec3"
-            
+
                 if seqlen==3:
                     self.x = seq[0]
                     self.y = seq[1]
@@ -191,12 +191,12 @@ cdef class vec3:
             self.x = args[0]
             self.y = args[1]
             self.z = 0.0
-            
+
         elif arglen==3:
             self.x = args[0]
             self.y = args[1]
             self.z = args[2]
-            
+
         else:
             raise TypeError, "vec3() takes at most 3 arguments"
 
@@ -217,7 +217,7 @@ cdef class vec3:
         cdef int cop
 
         cop = op
-        
+
         ta = type(a)
         tb = type(b)
         if (ta!=vec3 or tb!=vec3):
@@ -252,7 +252,7 @@ cdef class vec3:
         # sonst (Fehler)
         else:
             raise ValueError,"internal error: illegal rich comparison number"
-            
+
 
     def __add__(vec3 a, vec3 b):
         """Vector addition.
@@ -298,7 +298,7 @@ cdef class vec3:
         """
         cdef vec3 res, va, vb
         cdef double r
-        
+
         ta = type(a)
         tb = type(b)
 
@@ -333,7 +333,7 @@ cdef class vec3:
                 res.y = r*vb.y
                 res.z = r*vb.z
                 return res
-                
+
         raise TypeError, "unsupported operand type for *"
 
     def __div__(vec3 a, b):
@@ -345,7 +345,7 @@ cdef class vec3:
         """
         cdef vec3 res
         cdef double r
-        
+
         tb = type(b)
 
         if tb==float or tb==int or tb==long:
@@ -370,7 +370,7 @@ cdef class vec3:
         """
         cdef vec3 res, vb
         cdef double r
-        
+
         tb = type(b)
 
         if tb==float or tb==int or tb==long:
@@ -388,11 +388,11 @@ cdef class vec3:
             res = vec3()
             vb = b
             if fabs(vb.x)<=eps or fabs(vb.y)<=eps or fabs(vb.z)<=eps:
-                raise ZeroDivisionError,"vec3 modulo"      
+                raise ZeroDivisionError,"vec3 modulo"
             res.x = _fmod(self.x, vb.x)
             res.y = _fmod(self.y, vb.y)
             res.z = _fmod(self.z, vb.z)
-            return res         
+            return res
         else:
             raise TypeError, "unsupported operand type for %"
 
@@ -502,7 +502,7 @@ cdef class vec3:
         """
         cdef vec3 vb
         cdef double r
-        
+
         tb = type(b)
 
         if tb==float or tb==int or tb==long:
@@ -518,11 +518,11 @@ cdef class vec3:
             # vec3%=vec3
             vb = b
             if fabs(vb.x)<=eps or fabs(vb.y)<=eps or fabs(vb.z)<=eps:
-                raise ZeroDivisionError,"vec3 modulo"      
+                raise ZeroDivisionError,"vec3 modulo"
             self.x = _fmod(self.x, vb.x)
             self.y = _fmod(self.y, vb.y)
             self.z = _fmod(self.z, vb.z)
-            return self        
+            return self
         else:
             raise TypeError, "unsupported operand type for %="
 
@@ -576,7 +576,7 @@ cdef class vec3:
         -1.8
         """
         cdef int k
-        
+
         T=type(key)
         if T!=int and T!=long:
             raise TypeError, "index must be integer"
@@ -597,7 +597,7 @@ cdef class vec3:
         (1.5000, 0.7000, -0.3000)
         """
         cdef int k
-        
+
         T=type(key)
         if T!=int and T!=long:
             raise TypeError, "index must be integer"
@@ -715,7 +715,7 @@ cdef class vec3:
         eta is the relative index of refraction. If the returned
         vector is zero then there is no transmitted light because
         of total internal reflection.
-        
+
         >>> a=vec3(1.0, -1.5, 0.8)
         >>> print a.refract(vec3(0,1,0), 1.33)
         (1.3300, -1.7920, 1.0640)
@@ -724,7 +724,7 @@ cdef class vec3:
         cdef double dot, k, ceta
 
         res = vec3()
-        
+
         ceta = eta
         dot = self.x*N.x + self.y*N.y + self.z*N.z
         k   = 1.0 - ceta*ceta*(1.0 - dot*dot)
@@ -803,7 +803,7 @@ cdef class vec4iter:
     """vec4 iterator."""
     cdef int idx
     cdef object v
-    
+
     def __new__(self, v):
         self.idx = 0
         self.v   = v
@@ -854,13 +854,13 @@ cdef class vec4:
         specify them as a string:
 
         v = vec4([1,2,3]) -> v = <1,2,3,0>
-        v = vec4("4,5")   -> v = <4,5,0,0>        
+        v = vec4("4,5")   -> v = <4,5,0,0>
         """
 
         cdef int arglen, seqlen
         cdef vec4 v
         arglen = len(args)
-        
+
         if arglen==0:
             self.x = 0.0
             self.y = 0.0
@@ -903,7 +903,7 @@ cdef class vec4:
                     seqlen = len(seq)
                 except:
                     raise TypeError,"vec4() arg can't be converted to vec4"
-            
+
                 if seqlen==4:
                     self.x = seq[0]
                     self.y = seq[1]
@@ -937,7 +937,7 @@ cdef class vec4:
             self.y = args[1]
             self.z = 0.0
             self.w = 0.0
-            
+
         elif arglen==3:
             self.x = args[0]
             self.y = args[1]
@@ -961,7 +961,7 @@ cdef class vec4:
 
     def __str__(self):
         return "(%1.4f, %1.4f, %1.4f, %1.4f)"%(self.x, self.y, self.z, self.w)
-        
+
     def __iter__(self):
         return vec4iter(self)
 
@@ -970,7 +970,7 @@ cdef class vec4:
         cdef int cop
 
         cop = op
-        
+
         ta = type(a)
         tb = type(b)
         if (ta!=vec4 or tb!=vec4):
@@ -1003,7 +1003,7 @@ cdef class vec4:
         # sonst (Fehler)
         else:
             raise ValueError,"internal error: illegal rich comparison number"
-    
+
     def __add__(vec4 a, vec4 b):
         """Vector addition.
 
@@ -1051,7 +1051,7 @@ cdef class vec4:
 
         cdef vec4 res, va, vb
         cdef double r
-        
+
         ta = type(a)
         tb = type(b)
 
@@ -1084,7 +1084,7 @@ cdef class vec4:
                 res.z = r*vb.z
                 res.w = r*vb.w
                 return res
-                
+
         raise TypeError, "unsupported operand type for *"
 
     def __div__(vec4 a, b):
@@ -1097,7 +1097,7 @@ cdef class vec4:
 
         cdef vec4 res
         cdef double r
-        
+
         tb = type(b)
 
         if tb==float or tb==int or tb==long:
@@ -1123,7 +1123,7 @@ cdef class vec4:
         """
         cdef vec4 res, vb
         cdef double r
-        
+
         tb = type(b)
 
         if tb==float or tb==int or tb==long:
@@ -1148,7 +1148,7 @@ cdef class vec4:
             res.y = _fmod(self.y, vb.y)
             res.z = _fmod(self.z, vb.z)
             res.w = _fmod(self.w, vb.w)
-            return res         
+            return res
         else:
             raise TypeError, "unsupported operand type for %"
 
@@ -1263,7 +1263,7 @@ cdef class vec4:
         """
         cdef vec4 vb
         cdef double r
-        
+
         tb = type(b)
 
         if tb==float or tb==int or tb==long:
@@ -1286,7 +1286,7 @@ cdef class vec4:
             self.y = _fmod(self.y, vb.y)
             self.z = _fmod(self.z, vb.z)
             self.w = _fmod(self.w, vb.w)
-            return self        
+            return self
         else:
             raise TypeError, "unsupported operand type for %="
 
@@ -1346,7 +1346,7 @@ cdef class vec4:
         0.2
         """
         cdef int k
-        
+
         T=type(key)
         if T!=int and T!=long:
             raise TypeError, "index must be integer"
@@ -1368,7 +1368,7 @@ cdef class vec4:
         (1.5000, 0.7000, -0.3000, 0.2000)
         """
         cdef int k
-        
+
         T=type(key)
         if T!=int and T!=long:
             raise TypeError, "index must be integer"
@@ -1422,7 +1422,7 @@ cdef class mat3iter:
     """mat iterator."""
     cdef int idx
     cdef object m
-    
+
     def __new__(self, m):
         self.idx = 0
         self.m   = m
@@ -1442,7 +1442,7 @@ cdef class mat3iter:
             return self.m[2]
         else:
             raise StopIteration
-        
+
 # mat3
 cdef class mat3:
 
@@ -1470,7 +1470,7 @@ cdef class mat3:
         cdef int arglen
         cdef mat3 B
         arglen = len(args)
-        
+
         # No arguments
         if arglen==0:
             m11=m12=m13=0.0
@@ -1557,7 +1557,7 @@ cdef class mat3:
                     self.m33 = b[2]
                 else:
                     raise TypeError, "mat3() takes at most 9 arguments"
-            
+
         # 3 arguments (columns as sequences)
         elif arglen==3:
             a,b,c=args
@@ -1570,7 +1570,7 @@ cdef class mat3:
             self.m31 = a[2]
             self.m32 = b[2]
             self.m33 = c[2]
-            
+
         # 9 arguments
         elif arglen==9:
             self.m11 = args[0]
@@ -1582,7 +1582,7 @@ cdef class mat3:
             self.m31 = args[6]
             self.m32 = args[7]
             self.m33 = args[8]
-            
+
         else:
             raise TypeError,"mat3() arg can't be converted to mat3"
 
@@ -1609,7 +1609,7 @@ cdef class mat3:
         cdef int cop
 
         cop = op
-        
+
         ta = type(a)
         tb = type(b)
         if (ta!=mat3 or tb!=mat3):
@@ -1630,18 +1630,18 @@ cdef class mat3:
         # ==
         elif cop==2:
             return (fabs(ma.m11-mb.m11)<=eps and fabs(ma.m12-mb.m12)<=eps and
-                    fabs(ma.m13-mb.m13)<=eps and 
+                    fabs(ma.m13-mb.m13)<=eps and
                     fabs(ma.m21-mb.m21)<=eps and fabs(ma.m22-mb.m22)<=eps and
-                    fabs(ma.m23-mb.m23)<=eps and 
+                    fabs(ma.m23-mb.m23)<=eps and
                     fabs(ma.m31-mb.m31)<=eps and fabs(ma.m32-mb.m32)<=eps and
                     fabs(ma.m33-mb.m33)<=eps)
         # !=
         elif cop==3:
             return (fabs(ma.m11-mb.m11)>eps or fabs(ma.m12-mb.m12)>eps or
-                    fabs(ma.m13-mb.m13)>eps or 
+                    fabs(ma.m13-mb.m13)>eps or
                     fabs(ma.m21-mb.m21)>eps or fabs(ma.m22-mb.m22)>eps or
-                    fabs(ma.m23-mb.m23)>eps or 
-                    fabs(ma.m31-mb.m31)>eps or fabs(ma.m32-mb.m32)>eps or 
+                    fabs(ma.m23-mb.m23)>eps or
+                    fabs(ma.m31-mb.m31)>eps or fabs(ma.m32-mb.m32)>eps or
                     fabs(ma.m33-mb.m33)>eps)
         # >
         elif cop==4:
@@ -1722,7 +1722,7 @@ cdef class mat3:
                 wres.x = ma.m11*wb.x + ma.m12*wb.y + ma.m13*wb.z
                 wres.y = ma.m21*wb.x + ma.m22*wb.y + ma.m23*wb.z
                 wres.z = ma.m31*wb.x + ma.m32*wb.y + ma.m33*wb.z
-                return wres                
+                return wres
             # Scalar on the right?
             elif tb==float or tb==int or tb==long:
                 res = mat3()
@@ -1773,7 +1773,7 @@ cdef class mat3:
         """
         cdef mat3 res
         cdef double r
-        
+
         tb = type(b)
 
         if tb==float or tb==int or tb==long:
@@ -1817,7 +1817,7 @@ cdef class mat3:
             res.m32 = _fmod(self.m32, r)
             res.m33 = _fmod(self.m33, r)
             return res
-        
+
         elif tb==mat3:
             mb = other
 
@@ -1840,7 +1840,7 @@ cdef class mat3:
 
         else:
             raise TypeError, "unsupported operand type for %"
-            
+
 
     def __neg__(self):
         """Negation.
@@ -1905,7 +1905,7 @@ cdef class mat3:
         """
         cdef double r, a,b,c
         cdef mat3 mb
-        
+
         tb = type(other)
         if tb==float or tb==int or tb==long:
             r=other
@@ -1970,7 +1970,7 @@ cdef class mat3:
         """
         cdef mat3 mb
         cdef double r
-        
+
         tb = type(b)
 
         if tb==float or tb==int or tb==long:
@@ -2002,7 +2002,7 @@ cdef class mat3:
             self.m31 = _fmod(self.m31, mb.m31)
             self.m32 = _fmod(self.m32, mb.m32)
             self.m33 = _fmod(self.m33, mb.m33)
-            return self        
+            return self
         else:
             raise TypeError, "unsupported operand type for %="
 
@@ -2015,7 +2015,7 @@ cdef class mat3:
         """Return a column or a single matrix element.
         """
         cdef int i,j
-        
+
         T=type(key)
         if T==int or T==long:
             i = key
@@ -2034,7 +2034,7 @@ cdef class mat3:
             j = key[1]
             if i<0 or i>2 or j<0 or j>2:
                 raise IndexError, "index out of range"
-            
+
             if i==0:
                 if j==0:
                     return self.m11
@@ -2066,7 +2066,7 @@ cdef class mat3:
         """
         cdef int i,j
         cdef double v
-        
+
         T=type(key)
         if T==int or T==long:
             if len(value)!=3:
@@ -2094,7 +2094,7 @@ cdef class mat3:
             v = value
             if i<0 or i>2 or j<0 or j>2:
                 raise IndexError, "index out of range"
-            
+
             if i==0:
                 if j==0:
                     self.m11 = v
@@ -2122,7 +2122,7 @@ cdef class mat3:
     def getRow(self, idx):
         """Return row (as vec3)."""
         cdef int i
-        
+
         T=type(idx)
         if T!=int and T!=long:
             raise TypeError,"index must be integer"
@@ -2140,7 +2140,7 @@ cdef class mat3:
     def setRow(self, idx, value):
         """Set row."""
         cdef int i
-        
+
         T=type(idx)
         if T!=int and T!=long:
             raise TypeError,"index must be integer"
@@ -2168,7 +2168,7 @@ cdef class mat3:
     def getColumn(self, idx):
         """Return column (as vec3)."""
         cdef int i
-        
+
         T=type(idx)
         if T!=int and T!=long:
             raise TypeError,"index must be integer"
@@ -2186,7 +2186,7 @@ cdef class mat3:
     def setColumn(self, idx, value):
         """Set column."""
         cdef int i
-        
+
         T=type(idx)
         if T!=int and T!=long:
             raise TypeError,"index must be integer"
@@ -2209,7 +2209,7 @@ cdef class mat3:
             self.m33 = value[2]
         else:
             raise IndexError, "index out of range"
-       
+
 
     def toList(self, rowmajor=0):
         """Return a list containing the matrix elements.
@@ -2278,9 +2278,9 @@ cdef class mat3:
         d = self.determinant()
         if fabs(d)<=eps:
             raise ZeroDivisionError, "matrix is not invertible"
-        
+
         d = 1.0/d
-        
+
         res=mat3()
         res.m11 = d*(self.m22*self.m33-self.m23*self.m32)
         res.m12 = d*(self.m32*self.m13-self.m12*self.m33)
@@ -2292,7 +2292,7 @@ cdef class mat3:
         res.m32 = d*(self.m31*self.m12-self.m11*self.m32)
         res.m33 = d*(self.m11*self.m22-self.m12*self.m21)
         return res
-    
+
     def scaling(self, s):
         """Return scaling matrix."""
         cdef mat3 res
@@ -2366,7 +2366,7 @@ cdef class mat3:
         self.m32 = self.m32*sy
         self.m33 = self.m33*sz
         return self
-    
+
     def rotate(self, angle, axis):
         """Concatenate a rotation.
 
@@ -2407,7 +2407,7 @@ cdef class mat3:
         """
         cdef mat3 res
         cdef vec3 x,y,z
-        
+
         x = vec3(self.m11, self.m21, self.m31)
         y = vec3(self.m12, self.m22, self.m32)
         z = vec3(self.m13, self.m23, self.m33)
@@ -2442,7 +2442,7 @@ cdef class mat3:
         cdef mat3 m
         cdef vec3 a,b,c
         cdef double al, bl, cl
-        
+
         m = self.ortho()
 
         # a,b,c = Column 0,1,2 of m
@@ -2468,7 +2468,7 @@ cdef class mat3:
 
         scale = vec3(al,bl,cl)
 
-        # normalizing a,b,c 
+        # normalizing a,b,c
 #        a/=al
 #        b/=bl
 #        c/=cl
@@ -2507,7 +2507,7 @@ cdef class mat4iter:
     """mat iterator."""
     cdef int idx
     cdef object m
-    
+
     def __new__(self, m):
         self.idx = 0
         self.m   = m
@@ -2562,9 +2562,9 @@ cdef double _subdet(double m4[16], short i, short j):
            m3[6]*m3[4]*m3[2]- \
            m3[7]*m3[5]*m3[0]- \
            m3[8]*m3[3]*m3[1]
-    
 
-        
+
+
 # mat4
 cdef class mat4:
 
@@ -2676,7 +2676,7 @@ cdef class mat4:
                     self.m41 = seq[12]
                     self.m42 = seq[13]
                     self.m43 = seq[14]
-                    self.m44 = seq[15]              
+                    self.m44 = seq[15]
                 elif seqlen==4:
                     b = seq[0]
                     self.m11 = b[0]
@@ -2700,7 +2700,7 @@ cdef class mat4:
                     self.m44 = b[3]
                 else:
                     raise TypeError, "mat4() takes at most 16 arguments"
-            
+
         # 4 arguments (columns as sequences)
         elif arglen==4:
             a,b,c,d=args
@@ -2720,7 +2720,7 @@ cdef class mat4:
             self.m42 = b[3]
             self.m43 = c[3]
             self.m44 = d[3]
-            
+
         # 16 arguments
         elif arglen==16:
             self.m11 = args[0]
@@ -2739,7 +2739,7 @@ cdef class mat4:
             self.m42 = args[13]
             self.m43 = args[14]
             self.m44 = args[15]
-            
+
         else:
             raise TypeError,"mat4() arg can't be converted to mat4"
 
@@ -2768,7 +2768,7 @@ cdef class mat4:
         cdef int cop
 
         cop = op
-        
+
         ta = type(a)
         tb = type(b)
         if (ta!=mat4 or tb!=mat4):
@@ -2801,10 +2801,10 @@ cdef class mat4:
             return (fabs(ma.m11-mb.m11)>eps or fabs(ma.m12-mb.m12)>eps or
                     fabs(ma.m13-mb.m13)>eps or fabs(ma.m14-mb.m14)>eps or
                     fabs(ma.m21-mb.m21)>eps or fabs(ma.m22-mb.m22)>eps or
-                    fabs(ma.m23-mb.m23)>eps or fabs(ma.m24-mb.m24)>eps or 
-                    fabs(ma.m31-mb.m31)>eps or fabs(ma.m32-mb.m32)>eps or 
-                    fabs(ma.m33-mb.m33)>eps or fabs(ma.m34-mb.m34)>eps or 
-                    fabs(ma.m41-mb.m41)>eps or fabs(ma.m42-mb.m42)>eps or 
+                    fabs(ma.m23-mb.m23)>eps or fabs(ma.m24-mb.m24)>eps or
+                    fabs(ma.m31-mb.m31)>eps or fabs(ma.m32-mb.m32)>eps or
+                    fabs(ma.m33-mb.m33)>eps or fabs(ma.m34-mb.m34)>eps or
+                    fabs(ma.m41-mb.m41)>eps or fabs(ma.m42-mb.m42)>eps or
                     fabs(ma.m43-mb.m43)>eps or fabs(ma.m44-mb.m44)>eps)
         # >
         elif cop==4:
@@ -2943,7 +2943,7 @@ cdef class mat4:
                 wres.y = ma.m21*wb.x + ma.m22*wb.y + ma.m23*wb.z + ma.m24*wb.w
                 wres.z = ma.m31*wb.x + ma.m32*wb.y + ma.m33*wb.z + ma.m34*wb.w
                 wres.w = ma.m41*wb.x + ma.m42*wb.y + ma.m43*wb.z + ma.m44*wb.w
-                return wres                
+                return wres
             # vec3 on the right?
             elif tb==vec3:
                 # mat4*vec3
@@ -2957,7 +2957,7 @@ cdef class mat4:
                     vres.x = vres.x/w
                     vres.y = vres.y/w
                     vres.z = vres.z/w
-                return vres                
+                return vres
             # Scalar on the right?
             elif tb==float or tb==int or tb==long:
                 res = mat4()
@@ -3036,7 +3036,7 @@ cdef class mat4:
 
     def __div__(mat4 a, b):
         """Division.
-        
+
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
         >>> print M/2.0
         [   0.5000,    1.0000,    1.5000,    2.0000]
@@ -3046,7 +3046,7 @@ cdef class mat4:
         """
         cdef mat4 res
         cdef double r
-        
+
         tb = type(b)
 
         if tb==float or tb==int or tb==long:
@@ -3111,7 +3111,7 @@ cdef class mat4:
             res.m43 = _fmod(self.m43, r)
             res.m44 = _fmod(self.m44, r)
             return res
-        
+
         elif tb==mat4:
             mb = other
 
@@ -3146,7 +3146,7 @@ cdef class mat4:
 
         else:
             raise TypeError, "unsupported operand type for %"
-    
+
 
     def __neg__(self):
         """Negation.
@@ -3254,7 +3254,7 @@ cdef class mat4:
         """
         cdef double r, a,b,c,d
         cdef mat4 mb
-        
+
         tb = type(other)
         if tb==float or tb==int or tb==long:
             r=other
@@ -3347,7 +3347,7 @@ cdef class mat4:
         """
         cdef mat4 mb
         cdef double r
-        
+
         tb = type(b)
 
         if tb==float or tb==int or tb==long:
@@ -3398,7 +3398,7 @@ cdef class mat4:
             self.m42 = _fmod(self.m42, mb.m42)
             self.m43 = _fmod(self.m43, mb.m43)
             self.m44 = _fmod(self.m44, mb.m43)
-            return self        
+            return self
         else:
             raise TypeError, "unsupported operand type for %="
 
@@ -3410,7 +3410,7 @@ cdef class mat4:
         """Return a column or a single matrix element.
         """
         cdef int i,j
-        
+
         T=type(key)
         if T==int or T==long:
             i = key
@@ -3431,7 +3431,7 @@ cdef class mat4:
             j = key[1]
             if i<0 or i>3 or j<0 or j>3:
                 raise IndexError, "index out of range"
-            
+
             if i==0:
                 if j==0:
                     return self.m11
@@ -3478,7 +3478,7 @@ cdef class mat4:
         """
         cdef int i,j
         cdef double v
-        
+
         T=type(key)
         if T==int or T==long:
             if len(value)!=4:
@@ -3514,7 +3514,7 @@ cdef class mat4:
             v = value
             if i<0 or i>3 or j<0 or j>3:
                 raise IndexError, "index out of range"
-            
+
             if i==0:
                 if j==0:
                     self.m11 = v
@@ -3557,7 +3557,7 @@ cdef class mat4:
     def getRow(self, idx):
         """Return row (as vec4)."""
         cdef int i
-        
+
         T=type(idx)
         if T!=int and T!=long:
             raise TypeError,"index must be integer"
@@ -3577,7 +3577,7 @@ cdef class mat4:
     def setRow(self, idx, value):
         """Set row."""
         cdef int i
-        
+
         T=type(idx)
         if T!=int and T!=long:
             raise TypeError,"index must be integer"
@@ -3612,7 +3612,7 @@ cdef class mat4:
     def getColumn(self, idx):
         """Return column (as vec4)."""
         cdef int i
-        
+
         T=type(idx)
         if T!=int and T!=long:
             raise TypeError,"index must be integer"
@@ -3632,7 +3632,7 @@ cdef class mat4:
     def setColumn(self, idx, value):
         """Set column."""
         cdef int i
-        
+
         T=type(idx)
         if T!=int and T!=long:
             raise TypeError,"index must be integer"
@@ -3663,7 +3663,7 @@ cdef class mat4:
             self.m44 = value[3]
         else:
             raise IndexError, "index out of range"
-       
+
 
     def toList(self, rowmajor=0):
         """Return a list containing the matrix elements.
@@ -3721,7 +3721,7 @@ cdef class mat4:
 
     def transpose(self):
         """Return transpose matrix.
-        
+
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
         >>> print M.transpose()
         [   1.0000,    5.0000,    9.0000,   13.0000]
@@ -3751,7 +3751,7 @@ cdef class mat4:
 
     def determinant(self):
         """Return determinant.
-        
+
         >>> M=mat4(2.0,0,0,0, 0,2.0,0,0, 0,0,2.0,0, 0,0,0,2.0)
         >>> print M.determinant()
         16.0
@@ -3784,7 +3784,7 @@ cdef class mat4:
     def _submat(self, mat3 M3, i,j):
         cdef int k,l
         cdef double v
-        
+
 #        M=mat3()
         k=0
         while k<3:
@@ -3820,7 +3820,7 @@ cdef class mat4:
                 l=l+1
             k=k+1
         return M3
-        
+
     def inverse(self):
         """Return inverse matrix.
 
@@ -3853,11 +3853,11 @@ cdef class mat4:
         m4[13] = self.m42
         m4[14] = self.m43
         m4[15] = self.m44
-        
+
         det=self.determinant()
         if fabs(det)<=eps:
             raise ZeroDivisionError,"matrix not invertible"
-        
+
         i=0
         while i<4:
             j=0
@@ -4025,7 +4025,7 @@ cdef class mat4:
         self.m42 = self.m42*sy
         self.m43 = self.m43*sz
         return self
-    
+
     def rotate(self, angle, axis):
         """Concatenate a rotation.
 
@@ -4167,14 +4167,14 @@ cdef class mat4:
 
         f = fovy
         a = aspect
-        
+
         top    = near * tan(f * 3.1415926535897931 / 360.0)
         bottom = -top
         left   = bottom * a
         right  = top * a
 
         return self.frustum(left, right, bottom, top, near, far)
-        
+
     def lookAt(self, pos, target, up=(0,0,1)):
         """Look from pos to target.
 
@@ -4184,11 +4184,11 @@ cdef class mat4:
         """
         cdef mat4 res
         cdef vec3 right,vup,dir
-        
+
         pos    = vec3(pos)
         target = vec3(target)
         vup    = vec3(up)
-        
+
         dir = (target - pos).normalize()
         vup = vup.normalize()
         vup = vup - (vup * dir) * dir
@@ -4229,7 +4229,7 @@ cdef class mat4:
         """
         cdef mat4 res
         cdef vec3 x,y,z
-        
+
         x = vec3(self.m11, self.m21, self.m31)
         y = vec3(self.m12, self.m22, self.m32)
         z = vec3(self.m13, self.m23, self.m33)
@@ -4265,14 +4265,14 @@ cdef class mat4:
     def decompose(self):
         """Decomposes the matrix into a translation, rotation and scaling part.
 
-        Returns a tuple (translation, rotation, scaling). The 
+        Returns a tuple (translation, rotation, scaling). The
         translation and scaling parts are given as vec3's, the rotation
         is still given as a mat4.
         """
         cdef mat4 m
         cdef vec3 a,b,c
         cdef double al, bl, cl
-        
+
         m = self.ortho()
         m.m14 = 0.0
         m.m24 = 0.0
@@ -4305,7 +4305,7 @@ cdef class mat4:
 
         scale = vec3(al,bl,cl)
 
-        # normalizing a,b,c 
+        # normalizing a,b,c
 #        a/=al
 #        b/=bl
 #        c/=cl
@@ -4366,7 +4366,7 @@ cdef class mat4:
         self.m33 = m.m33
 
 ######################################################################
-        
+
 # quat
 cdef class quat:
     """Quaternion class.
@@ -4393,14 +4393,14 @@ cdef class quat:
         cdef int arglen, seqlen
         cdef quat q
         arglen = len(args)
-        
+
         # 0 arguments
         if arglen==0:
             self.w = 0.0
             self.x = 0.0
             self.y = 0.0
             self.z = 0.0
-            
+
         # 1 argument
         elif arglen==1:
             T = type(args[0])
@@ -4439,7 +4439,7 @@ cdef class quat:
                     seqlen = len(seq)
                 except:
                     raise TypeError,"quat() arg can't be converted to quat"
-            
+
                 if seqlen==0:
                     self.w = 0.0
                     self.x = 0.0
@@ -4462,14 +4462,14 @@ cdef class quat:
         elif arglen==2:
             angle, axis = args
             self.fromAngleAxis(angle,axis)
-            
+
         # 4 arguments
         elif arglen==4:
             self.w = args[0]
             self.x = args[1]
             self.y = args[2]
             self.z = args[3]
-            
+
         else:
             raise TypeError, "quat() arg can't be converted to quat"
 
@@ -4488,7 +4488,7 @@ cdef class quat:
         cdef int cop
 
         cop = op
-        
+
         ta = type(a)
         tb = type(b)
         if (ta!=quat or tb!=quat):
@@ -4521,7 +4521,7 @@ cdef class quat:
         # sonst (Fehler)
         else:
             raise ValueError,"internal error: illegal rich comparison number"
-        
+
     def __add__(quat a, quat b):
         """Addition.
 
@@ -4565,7 +4565,7 @@ cdef class quat:
         """
         cdef quat res, va, vb
         cdef double r
-        
+
         ta = type(a)
         tb = type(b)
 
@@ -4600,7 +4600,7 @@ cdef class quat:
                 res.y = r*vb.y
                 res.z = r*vb.z
                 return res
-                
+
         raise TypeError, "unsupported operand type for *"
 
     def __div__(quat a, b):
@@ -4612,7 +4612,7 @@ cdef class quat:
         """
         cdef quat res
         cdef double r
-        
+
         tb = type(b)
 
         if tb==float or tb==int or tb==long:
@@ -4690,9 +4690,9 @@ cdef class quat:
         cdef quat vb
         cdef double r
         cdef double w,x,y,z
-        
+
         T = type(other)
-       
+
         if T==quat:
             # quat*=quat
             vb = other
@@ -4705,7 +4705,7 @@ cdef class quat:
             self.y = y
             self.z = z
             return self
-        
+
         elif T==float or T==int or T==long:
             # quat*=scalar
             r   = other
@@ -4762,7 +4762,7 @@ cdef class quat:
 
     def __abs__(self):
         """Return magnitude.
-        
+
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
         >>> print round(abs(q),5)
         1.0
@@ -4773,7 +4773,7 @@ cdef class quat:
 
     def conjugate(self):
         """Return conjugate.
-        
+
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
         >>> print q.conjugate()
         (0.9689, -0.2160, -0.1080, -0.0540)
@@ -4785,7 +4785,7 @@ cdef class quat:
         res.y = -self.y
         res.z = -self.z
         return res
-    
+
     def normalize(self):
         """Return normalized quaternion.
 
@@ -4798,7 +4798,7 @@ cdef class quat:
         """
         cdef quat res
         cdef double nlen
-        
+
         nlen = sqrt(self.w*self.w+self.x*self.x+self.y*self.y+self.z*self.z)
         if nlen<=eps:
             raise ZeroDivisionError,"quat division"
@@ -4819,7 +4819,7 @@ cdef class quat:
         (0.7563, -0.4202, -0.1681, -0.2521)
         """
         cdef quat res
-        
+
         len_2 = self.w*self.w+self.x*self.x+self.y*self.y+self.z*self.z
         if fabs(len_2)<=eps:
             raise ZeroDivisionError,"quat is not invertible"
@@ -4846,7 +4846,7 @@ cdef class quat:
         cdef double s,w
 
         q = self.normalize()
-        
+
         # Clamp nself.w (since the quat has to be normalized it should
         # be between -1 and 1 anyway, but it might be slightly off due
         # to numerical inaccuracies)
@@ -4856,12 +4856,12 @@ cdef class quat:
             w = 1.0
         else:
             w = q.w
-            
+
         w = acos(w)
         s = sin(w)
         if s<=eps:
             return (0.0, vec3(0.0,0.0,0.0))
-        
+
         return (2.0*w, vec3(q.x/s, q.y/s, q.z/s))
 
     def fromAngleAxis(self, angle, axis):
@@ -4871,14 +4871,14 @@ cdef class quat:
 
         a = angle/2.0
         self.w = cos(a)
-        
+
         x = axis[0]
         y = axis[1]
         z = axis[2]
         n = x*x+y*y+z*z
         if n<=eps:
             raise ValueError,"axis mustn't be the null vector"
-    
+
         s = sin(a)/n
         self.x = x*s
         self.y = y*s
@@ -4896,7 +4896,7 @@ cdef class quat:
         """Return rotation matrix as mat3."""
         cdef mat3 res
         cdef xx,yy,zz,xy,zw,xz,yw,yz,xw
-        
+
         xx = 2.0*self.x*self.x
         yy = 2.0*self.y*self.y
         zz = 2.0*self.z*self.z
@@ -4923,7 +4923,7 @@ cdef class quat:
         """Return rotation matrix as mat4."""
         cdef mat4 res
         cdef xx,yy,zz,xy,zw,xz,yw,yz,xw
-        
+
         xx = 2.0*self.x*self.x
         yy = 2.0*self.y*self.y
         zz = 2.0*self.z*self.z
@@ -4935,7 +4935,7 @@ cdef class quat:
         xw = 2.0*self.x*self.w
 
         res = mat4()
-        
+
         res.m11 = 1.0-yy-zz
         res.m12 = xy-zw
         res.m13 = xz+yw
@@ -4999,7 +4999,7 @@ cdef class quat:
 
     def log(self):
         """Return the natural logarithm of self."""
-        
+
         cdef double b, t, f, ct, r
         cdef quat res
 
@@ -5023,14 +5023,14 @@ cdef class quat:
                 raise ValueError, "math domain error"
             r = self.w/ct
             if r<=eps:
-                raise ValueError, "math domain error"            
+                raise ValueError, "math domain error"
             res.w = log(r)
 
         return res
 
     def exp(self):
         """Return the exponential of self."""
-        
+
         cdef double b, f
         cdef quat res
 
@@ -5049,7 +5049,7 @@ cdef class quat:
             res.w = exp(self.w)*cos(b)
 
         return res
-                
+
 
 def slerp(double t, quat q0, quat q1):
     """Spherical linear interpolation between two quaternions.
@@ -5059,7 +5059,7 @@ def slerp(double t, quat q0, quat q1):
     q0 and q1 must be unit quaternions.
     """
     cdef double o,so,a,b
-    
+
     o = acos(q0.dot(q1))
     so = sin(o)
 

@@ -100,8 +100,8 @@ def tokenize(readline, tokeater):
                 tokeater(CHARACTER, tok, (linenr, scolbase), (linenr, scolbase+1), line, filename)
                 s = s[1:]
                 scolbase += 1
-            
-            
+
+
 
 def _tokeater(type, s, start, end, line, filename):
     if type==WHITESPACE or type==NEWLINE:
@@ -114,4 +114,4 @@ if __name__=="__main__":
 
     f=open("test.sl")
     tokenize(f.readline, _tokeater)
-    
+

@@ -85,14 +85,14 @@ class _SLParser(_slparser._SLParserBase):
             return "rgb"
         else:
             return None
-        
+
     def appendSpace(self):
         """Append self.space to self.spaces."""
         if self.space!=None:
             self.spaces.append(self.space)
         else:
             self.spaces.append(self.defaultSpace(self.type))
-                
+
         self.space = None
 
     def storeParam(self):
@@ -116,7 +116,7 @@ class _SLParser(_slparser._SLParserBase):
         self.space = None
         self.default = ""
         self.spaces   = []
-        
+
 
     def switchFile(self, cppline):
         """Switch to another file.
@@ -130,7 +130,7 @@ class _SLParser(_slparser._SLParserBase):
         self.filename = filename
         self.linenroffset = self._scanner.get_line_number()-linenr+1
 
-        
+
 # _SLfilter
 class _SLfilter:
     """Used by the sltokenizer to filter the Shading Language source.
@@ -149,7 +149,7 @@ class _SLfilter:
         self.stream_enabled = True
 
         self.current_filename = None
-        
+
     def eater(self, type, tok, start, end, line, filename):
         """Record only tokens with depth 0."""
         if filename!=self.current_filename:
@@ -157,7 +157,7 @@ class _SLfilter:
             if self.SLsource!="" and self.SLsource[-1]!="\n":
                 self.SLsource+="\n"
             self.SLsource+='# %d "%s"\n'%(start[0],filename)
-        
+
         if tok=="}":
             self.curly_depth-=1
             if self.curly_depth==0 and self.bracket_depth==0:
@@ -168,7 +168,7 @@ class _SLfilter:
         # Always record newlines so that line numbers won't get messed up
         if self.stream_enabled or tok=="\n":
             self.SLsource+=tok
-            
+
         if tok=="{":
             if self.curly_depth==0 and self.bracket_depth==0:
                 self.stream_enabled = False
@@ -208,7 +208,7 @@ def slparams(slname, cpp="cpp", cpperrstream=sys.stderr):
     # If the file doesn't exist, an exception is thrown.
     dummy = file(slname)
     dummy.close()
-    
+
     # Run the preprocessor on the input file.
     # The preprocessed data will be in slsrc.
     if cpp!=None:
@@ -237,7 +237,7 @@ def slparams(slname, cpp="cpp", cpperrstream=sys.stderr):
     # Parse the filtered source code...
     scanner = _slparser._SLParserBaseScanner(filter.SLsource)
     parser = _SLParser(scanner)
-    
+
 #    return wrap_error_reporter(parser, "definitions")
 
     try:
@@ -271,7 +271,7 @@ def slparams(slname, cpp="cpp", cpperrstream=sys.stderr):
 # Setup local namespace for convertdefault()
 _local_namespace = {}
 exec "from sl import *" in _local_namespace
-   
+
 def convertdefault(paramtuple):
     """Converts the default value of a shader parameter into a Python type.
 
@@ -292,10 +292,10 @@ def convertdefault(paramtuple):
     - normal -> vec3
     - matrix -> mat4
 
-    Arrays will be converted into lists of the corresponding type.    
+    Arrays will be converted into lists of the corresponding type.
     """
     global _local_namespace
-    
+
     typ = paramtuple[2]
     arraylen = paramtuple[3]
     defstr = paramtuple[6]

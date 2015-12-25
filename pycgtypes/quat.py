@@ -73,14 +73,14 @@ class quat:
         elif len(args)==2:
             angle, axis = args
             self.fromAngleAxis(angle,axis)
-            
+
         # 4 arguments
         elif len(args)==4:
             self.w, self.x, self.y, self.z = args
 
         else:
             raise TypeError, "quat() arg can't be converted to quat"
-        
+
 
     def __repr__(self):
         return 'quat('+`self.w`+', '+`self.x`+', '+`self.y`+', '+`self.z`+')'
@@ -199,7 +199,7 @@ class quat:
         # unsupported
         else:
             raise TypeError, "unsupported operand type for /"
-        
+
 
     def __neg__(self):
         """Negation.
@@ -220,7 +220,7 @@ class quat:
 
     def __abs__(self):
         """Return magnitude.
-        
+
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
         >>> print round(abs(q),5)
         1.0
@@ -230,7 +230,7 @@ class quat:
 
     def conjugate(self):
         """Return conjugate.
-        
+
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
         >>> print q.conjugate()
         (0.9689, -0.2160, -0.1080, -0.0540)
@@ -272,12 +272,12 @@ class quat:
         """
 
         nself = self.normalize()
-        
+
         # Clamp nself.w (since the quat has to be normalized it should
         # be between -1 and 1 anyway, but it might be slightly off due
         # to numerical inaccuracies)
         w = max(min(nself.w,1.0),-1.0)
-        
+
         w = math.acos(w)
         s = math.sin(w)
         if s<1E-12:
@@ -331,7 +331,7 @@ class quat:
 
     def fromMat(self, m):
         """Initialize self from either a mat3 or mat4 and returns self."""
-        
+
         d1,d2,d3 = m[0,0],m[1,1],m[2,2]
         t = d1+d2+d3+1.0
         if t>0.0:

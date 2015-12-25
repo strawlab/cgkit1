@@ -159,14 +159,14 @@ class mat4:
         if isinstance(other, _vec3):
             m11,m12,m13,m14,m21,m22,m23,m24,m31,m32,m33,m34,m41,m42,m43,m44 = self.mlist
             w = float(m41*other.x + m42*other.y + m43*other.z + m44)
-            return _vec3(m11*other.x + m12*other.y + m13*other.z + m14, 
-                         m21*other.x + m22*other.y + m23*other.z + m24, 
+            return _vec3(m11*other.x + m12*other.y + m13*other.z + m14,
+                         m21*other.x + m22*other.y + m23*other.z + m24,
                          m31*other.x + m32*other.y + m33*other.z + m34)/w
         # mat4*vec4
         if isinstance(other, _vec4):
             m11,m12,m13,m14,m21,m22,m23,m24,m31,m32,m33,m34,m41,m42,m43,m44 = self.mlist
-            return _vec4(m11*other.x + m12*other.y + m13*other.z + m14*other.w, 
-                         m21*other.x + m22*other.y + m23*other.z + m24*other.w, 
+            return _vec4(m11*other.x + m12*other.y + m13*other.z + m14*other.w,
+                         m21*other.x + m22*other.y + m23*other.z + m24*other.w,
                          m31*other.x + m32*other.y + m33*other.z + m34*other.w,
                          m41*other.x + m42*other.y + m43*other.z + m44*other.w)
         # mat4*mat4
@@ -204,7 +204,7 @@ class mat4:
         # vec4*mat4
         if isinstance(other, _vec4):
             m11,m12,m13,m14,m21,m22,m23,m24,m31,m32,m33,m34,m41,m42,m43,m44 = self.mlist
-            return _vec4(other.x*m11 + other.y*m21 + other.z*m31 + other.w*m41, 
+            return _vec4(other.x*m11 + other.y*m21 + other.z*m31 + other.w*m41,
                          other.x*m12 + other.y*m22 + other.z*m32 + other.w*m42,
                          other.x*m13 + other.y*m23 + other.z*m33 + other.w*m43,
                          other.x*m14 + other.y*m24 + other.z*m34 + other.w*m44)
@@ -212,7 +212,7 @@ class mat4:
         if isinstance(other, _vec3):
             m11,m12,m13,m14,m21,m22,m23,m24,m31,m32,m33,m34,m41,m42,m43,m44 = self.mlist
             w = float(other.x*m14 + other.y*m24 + other.z*m34 + m44)
-            return _vec3(other.x*m11 + other.y*m21 + other.z*m31 + m41, 
+            return _vec3(other.x*m11 + other.y*m21 + other.z*m31 + m41,
                          other.x*m12 + other.y*m22 + other.z*m32 + m42,
                          other.x*m13 + other.y*m23 + other.z*m33 + m43)/w
         # mat4*mat4
@@ -224,7 +224,7 @@ class mat4:
 
     def __div__(self, other):
         """Division
-        
+
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
         >>> print M/2.0
         [   0.5000,    1.0000,    1.5000,    2.0000]
@@ -376,7 +376,7 @@ class mat4:
             return copy.copy(self.mlist)
         else:
             return self.transpose().mlist
-            
+
 
     def identity(self):
         """Return identity matrix.
@@ -394,7 +394,7 @@ class mat4:
 
     def transpose(self):
         """Transpose matrix.
-        
+
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
         >>> print M.transpose()
         [   1.0000,    5.0000,    9.0000,   13.0000]
@@ -410,7 +410,7 @@ class mat4:
 
     def determinant(self):
         """Return determinant.
-        
+
         >>> M=mat4(2.0,0,0,0, 0,2.0,0,0, 0,0,2.0,0, 0,0,0,2.0)
         >>> print M.determinant()
         16.0
@@ -441,7 +441,7 @@ class mat4:
                +m14*m22*m31*m43 \
                -m14*m23*m31*m42 \
                +m14*m23*m32*m41
-    
+
 
     def _submat(self, i,j):
         M=_mat3()
@@ -454,7 +454,7 @@ class mat4:
                     t=(t[0],l+1)
                 M[k,l] = self[t]
         return M
-        
+
     def inverse(self):
         """Return inverse matrix.
 
@@ -465,7 +465,7 @@ class mat4:
         [   0.0000,    0.0000,    0.5000,    0.0000]
         [   0.0000,    0.0000,    0.0000,    0.5000]
         """
-        
+
         Mi=mat4()
         d=self.determinant()
         for i in range(4):
@@ -552,12 +552,12 @@ class mat4:
 
     def frustum(self, left, right, bottom, top, near, far):
         """equivalent to the OpenGL command glFrustum()"""
-        
+
         return mat4( (2.0*near)/(right-left), 0.0, float(right+left)/(right-left), 0.0,
                      0.0, (2.0*near)/(top-bottom), float(top+bottom)/(top-bottom), 0.0,
                      0.0, 0.0, -float(far+near)/(far-near), -(2.0*far*near)/(far-near),
                      0.0, 0.0, -1.0, 0.0)
-    
+
     def perspective(self, fovy, aspect, near, far):
         """von Mesa übernommen (glu.c)"""
 
@@ -624,7 +624,7 @@ class mat4:
     def decompose(self):
         """Decomposes the matrix into a translation, rotation and scaling part.
 
-        Returns a tuple (translation, rotation, scaling). The 
+        Returns a tuple (translation, rotation, scaling). The
         translation and scaling parts are given as vec3's, the rotation
         is still given as a mat4.
         """
@@ -638,7 +638,7 @@ class mat4:
         yl = y.length()
         zl = z.length()
         scale = _vec3(xl,yl,zl)
-        
+
         x/=xl
         y/=yl
         z/=zl
@@ -660,7 +660,7 @@ class mat4:
         return _mat3(m11,m12,m13,
                      m21,m22,m23,
                      m31,m32,m33)
-        
+
 ######################################################################
 
 def _test():

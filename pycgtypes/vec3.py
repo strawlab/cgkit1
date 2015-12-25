@@ -35,9 +35,9 @@ class vec3:
         specify them as a string:
 
         v = vec3([1,2,3]) -> v = <1,2,3>
-        v = vec3("4,5")   -> v = <4,5,0>        
+        v = vec3("4,5")   -> v = <4,5,0>
         """
-        
+
         if len(args)==0:
             self.x, self.y, self.z = (0.0, 0.0, 0.0)
 
@@ -46,7 +46,7 @@ class vec3:
             # scalar
             if T==types.FloatType or T==types.IntType or T==types.LongType:
                 self.x, self.y, self.z = (args[0], args[0], args[0])
-            # vec3  
+            # vec3
             elif isinstance(args[0], vec3):
                 self.x, self.y, self.z = args[0]
             # Tuple/List
@@ -76,7 +76,7 @@ class vec3:
 
         elif len(args)==2:
             self.x, self.y, self.z = (args[0], args[1], 0.0)
-            
+
         elif len(args)==3:
             self.x, self.y, self.z = args
 
@@ -384,14 +384,14 @@ class vec3:
         >>> print c
         (1.6000, 0.0400, 0.9000)
         """
-        
+
         if isinstance(other, vec3):
             return vec3(self.y*other.z-self.z*other.y,
                         self.z*other.x-self.x*other.z,
                         self.x*other.y-self.y*other.x)
         else:
             raise TypeError, "unsupported operand type for cross()"
-        
+
 
     def length(self):
         """Return the length of the vector.
@@ -424,7 +424,7 @@ class vec3:
         >>> print a.angle(b)
         1.99306755584
         """
-        
+
         if isinstance(other, vec3):
             return math.acos((self*other) / (abs(self)*abs(other)))
         else:
@@ -449,7 +449,7 @@ class vec3:
         eta is the relative index of refraction. If the returned
         vector is zero then there is no transmitted light because
         of total internal reflection.
-        
+
         >>> a=vec3(1.0, -1.5, 0.8)
         >>> print a.refract(vec3(0,1,0), 1.33)
         (1.3300, -1.7920, 1.0640)
@@ -485,7 +485,7 @@ class vec3:
         # x is smallest
         else:
             return vec3(0.0, -self.z, self.y)
-        
+
 
 ######################################################################
 def _test():

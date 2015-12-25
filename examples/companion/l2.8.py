@@ -30,7 +30,7 @@ def ColorCube(n,s):
                 RiScale(s,s,s)
                 UnitCube()
                 RiTransformEnd()
-                
+
     RiAttributeEnd()
 
 # UnitCube(): define a cube in the graphics environment
@@ -45,7 +45,7 @@ def UnitCube():
     Cube = [
         [ [L,D,F], [R,D,F], [R,D,N], [L,D,N] ],   # Bottom face
         [ [L,D,F], [L,U,F], [L,U,N], [L,D,N] ],   # Left face
-        [ [R,U,N], [L,U,N], [L,U,F], [R,U,F] ],   # Top face 
+        [ [R,U,N], [L,U,N], [L,U,F], [R,U,F] ],   # Top face
         [ [R,U,N], [R,U,F], [R,D,F], [R,D,N] ],   # Right face
         [ [R,D,F], [R,U,F], [L,U,F], [L,D,F] ],   # Far face
         [ [L,U,N], [R,U,N], [R,D,N], [L,D,N] ]    # Near face
@@ -54,7 +54,7 @@ def UnitCube():
     # declare the cube
     for i in range(6):
         RiPolygon(RI_P, Cube[i])
-          
+
 
 # main()
 
@@ -81,5 +81,5 @@ for frame in range(1,NFRAMES+1):
     ColorCube(NCUBES,scale)
     RiWorldEnd()
     RiFrameEnd()
-    
+
 RiEnd()

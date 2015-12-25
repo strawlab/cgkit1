@@ -40,7 +40,7 @@ def _tovec3(arg):
         return _vec3(x,y,z)
     else:
         return _vec3()
-    
+
 
 def atan(*args):
     """Returns the arc tangent.
@@ -48,7 +48,7 @@ def atan(*args):
     With one argument it math.atan() is called, with two arguments
     math.atan2() is called.
     """
-    
+
     if len(args)==1:
         return math.atan(args[0])
     elif len(args)==2:
@@ -65,7 +65,7 @@ def log(*args):
         return math.log(args[0])/math.log(args[1])
     else:
         raise TypeError,"log only takes 1 or 2 arguments."
-    
+
 
 # clamp
 def clamp(a, amin, amax):
@@ -95,7 +95,7 @@ def filterstep(edge, s1):
     pass
 
 def inversesqrt(x):
-    """Returns 1/sqrt(x)."""  
+    """Returns 1/sqrt(x)."""
     return 1.0/sqrt(x)
 
 def mix(val0, val1, t):
@@ -105,7 +105,7 @@ def mix(val0, val1, t):
     returned. For values of t between 0 and 1 a linearly interpolated
     value is returned.
     """
-    
+
     return (1.0-t)*val0 + t*val1
 
 def mod(a,b):
@@ -117,7 +117,7 @@ def float_noise(*args):
 
     This function is imported from the noise module.
     """
-    
+
     la = len(args)
     if la==1:
         return noise.noise(args[0])
@@ -133,7 +133,7 @@ def float_noise(*args):
 
 def point_noise(*args):
     """Returns a point whose value is a (pseudo) random function of its arguments."""
-    
+
     la = len(args)
     if la==1:
         try:
@@ -147,7 +147,7 @@ def point_noise(*args):
         elif a==3:
             return noise.vnoise(args[0])
         else:
-            raise ValueError,"arg1: invalid argument length"            
+            raise ValueError,"arg1: invalid argument length"
     elif la==2:
         try:
             a = len(args[0])
@@ -166,7 +166,7 @@ def point_noise(*args):
         return _vec3(x,y,z)
     else:
         raise TypeError, "the function takes between 1 and 4 arguments ("+`la`+" given)"
-   
+
 color_noise = point_noise
 vector_noise = point_noise
 
@@ -174,13 +174,13 @@ def float_pnoise(*args):
     """Returns a float value which is a periodic (pseudo) random function of its arguments.
 
     This function is imported from the noise module."""
-    
+
     la = len(args)
     try:
         a = len(args[0])
     except:
         a = 1
-        
+
     if la==2:
         if a==1:
             return noise.pnoise((args[0],),(args[1],))
@@ -196,13 +196,13 @@ def float_pnoise(*args):
 
 def point_pnoise(*args):
     """Returns a point whose value is a periodic (pseudo) random function of its arguments."""
-    
+
     la = len(args)
     try:
         a = len(args[0])
     except:
         a = 1
-        
+
     if la==2:
         if a==1:
             res = noise.vpnoise((args[0],),(args[1],))
@@ -227,7 +227,7 @@ def float_cellnoise(*args):
     The return value is constant between integer lattice points. This
     function is imported from the noise module.
     """
-    
+
     la = len(args)
     if la==1:
         return noise.cellnoise(args[0])
@@ -245,7 +245,7 @@ def point_cellnoise(*args):
 
     The return value is constant between integer lattice points.
     """
-    
+
     la = len(args)
     if la==1:
         try:
@@ -259,7 +259,7 @@ def point_cellnoise(*args):
         elif a==3:
             return noise.vcellnoise(args[0])
         else:
-            raise ValueError,"arg1: invalid argument length"            
+            raise ValueError,"arg1: invalid argument length"
     elif la==2:
         try:
             a = len(args[0])
@@ -278,7 +278,7 @@ def point_cellnoise(*args):
         return _vec3(x,y,z)
     else:
         raise TypeError, "the function takes between 1 and 4 arguments ("+`la`+" given)"
-   
+
 color_cellnoise = point_cellnoise
 vector_cellnoise = point_cellnoise
 
@@ -286,14 +286,14 @@ def float_random():
     """Return a random number between 0 and 1.
 
     This call is equivalent to random.random()."""
-    
+
     return random.random()
 
 def color_random():
     """Return a color whose componenets are a random number between 0 and 1.
 
     The function actually returns a vec3."""
-    
+
     return _vec3(random.random(), random.random(), random.random())
 
 def point_random():
@@ -302,7 +302,7 @@ def point_random():
 
 def sign(x):
     """Returns -1 with a negative argument, +1 with a positive argument, and 0 if its argument is zero."""
-    
+
     if x<0:
         return -1
     elif x>0:
@@ -316,7 +316,7 @@ def smoothstep(min, max, x):
     Returns 0 if x < min, 1 if x > max, and performs a smooth Hermite
     interpolation between 0 and 1 in the interval min to max.
     """
-    
+
     if x<min:
         return 0.0
     if x>max:
@@ -334,7 +334,7 @@ def spline(x, knots):
 
     nknots = len(knots)
     nspans = nknots-3
- 
+
     if nspans<1:
         raise ValueError, "spline(): there must be at least 4 control points ("+`nknots`+" given)"
 
@@ -370,19 +370,19 @@ def distance(P1,P2):
 def ptlined(P0,P1,Q):
     """Returns the distance between a point and a line segment.
 
-    The arguments should be of type vec3.    
+    The arguments should be of type vec3.
     """
     a = P1-P0
     b = Q-P0
-    
+
     x  = a*b
     if x<=0:
         return b.length()
-    
+
     aa = a*a
     if x>=aa:
         return (Q-P1).length()
-    
+
     return sqrt(b*b-(x*x/aa))
 
 def faceforward(N,I,Nref):
@@ -417,7 +417,7 @@ def refract(I, N, eta):
     normal vector N and the relative index of refraction eta. This is
     equivalent to calling I.refract(N, eta).
     """
-    
+
     return I.refract(N,eta)
 
 def xcomp(P):
@@ -474,7 +474,7 @@ def setcomp(c, index, value):
 def concat(*args):
     """Returns a concatenated string."""
     return string.join(args,"")
-    
+
 def match(pattern, subject):
     """String pattern matching."""
     return re.search(pattern, subject)!=None
@@ -504,4 +504,4 @@ def printf(pattern, *args):
 if __name__=="__main__":
 
     printf("Hallo s=%f c=%c",0.5,(1,2,3))
-    
+

@@ -126,9 +126,9 @@ class mat3:
         # mat3*vec3
         if isinstance(other, _vec3):
             m11,m12,m13,m21,m22,m23,m31,m32,m33 = self.mlist
-            return _vec3(m11*other.x + m12*other.y + m13*other.z, 
-                         m21*other.x + m22*other.y + m23*other.z, 
-                         m31*other.x + m32*other.y + m33*other.z)            
+            return _vec3(m11*other.x + m12*other.y + m13*other.z,
+                         m21*other.x + m22*other.y + m23*other.z,
+                         m31*other.x + m32*other.y + m33*other.z)
         # mat3*mat3
         if isinstance(other, mat3):
             m11,m12,m13,m21,m22,m23,m31,m32,m33 = self.mlist
@@ -156,8 +156,8 @@ class mat3:
         # vec3*mat3
         if isinstance(other, _vec3):
             m11,m12,m13,m21,m22,m23,m31,m32,m33 = self.mlist
-            return _vec3(other.x*m11 + other.y*m21 + other.z*m31, 
-                         other.x*m12 + other.y*m22 + other.z*m32, 
+            return _vec3(other.x*m11 + other.y*m21 + other.z*m31,
+                         other.x*m12 + other.y*m22 + other.z*m32,
                          other.x*m13 + other.y*m23 + other.z*m33)
         # mat3*mat3
         if isinstance(other, mat3):
@@ -305,7 +305,7 @@ class mat3:
 
     def rotation(self, angle, axis):
         """Return a rotation matrix."""
-        
+
         sqr_a = axis.x*axis.x
         sqr_b = axis.y*axis.y
         sqr_c = axis.z*axis.z
@@ -380,7 +380,7 @@ class mat3:
         yl = y.length()
         zl = z.length()
         scale = _vec3(xl,yl,zl)
-        
+
         x/=xl
         y/=yl
         z/=zl

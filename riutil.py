@@ -39,7 +39,7 @@ def RiuDefaultHeader():
         RiArchiveRecord(RI_STRUCTURE,"For %s",getpass.getuser())
     except:
         pass
-    
+
 
 def RiuArrow(height=1.0, thickness=0.1, headheight=0.2, headscale=1.7):
     """Outputs an arrow.
@@ -48,7 +48,7 @@ def RiuArrow(height=1.0, thickness=0.1, headheight=0.2, headscale=1.7):
     overall thickness of the arrow, headheight and headscale specify the
     height and a factor for the radius of the arrow head.
     """
-    
+
     # Radius for arrow head (paraboloid)
     rmax = headscale*thickness
     a = headheight/(rmax*rmax)
@@ -65,9 +65,9 @@ def RiuCoordSystem(thickness=0.06, shader="matte"):
 
     The X-,Y- and Z-axis are colored red, green and blue. thickness
     specifies the thickness of the arrows and shader is used as
-    surface shader for the entire coordinate system.    
+    surface shader for the entire coordinate system.
     """
-    
+
     RiAttributeBegin()
     RiSurface(shader)
     # X axis
@@ -87,7 +87,7 @@ def RiuCoordSystem(thickness=0.06, shader="matte"):
     # Z axis
     RiColor((0,0,1))
     RiuArrow(thickness=thickness)
-    
+
     RiAttributeEnd()
 
 
@@ -101,7 +101,7 @@ def RiuGrid(thickness=0.02, cells=6, shader="matte", color=(0.9,0.9,0.9)):
     """
 
     if cells%2==1: cells+=1
-    
+
     RiAttributeBegin()
     RiSurface(shader)
     RiColor(color)
@@ -128,7 +128,7 @@ def RiuGrid(thickness=0.02, cells=6, shader="matte", color=(0.9,0.9,0.9)):
 def RiuHeightfield(image):
     if not _PIL_installed:
         raise ImportError, "the Python Imaging Library (PIL) is not installed"
-    
+
     if type(image)==types.StringType or type(image)==types.UnicodeType:
         image = Image.open(image)
 

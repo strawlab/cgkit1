@@ -11,5 +11,5 @@
 
 version_info = (1,2,0,"final")
 
-# The following line is replaced by the setup script 
+# The following line is replaced by the setup script
 version = "1.2.0 (Oct 09 2004, 14:05)"

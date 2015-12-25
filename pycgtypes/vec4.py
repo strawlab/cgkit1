@@ -35,9 +35,9 @@ class vec4:
         specify them as a string:
 
         v = vec4([1,2,3]) -> v = <1,2,3,0>
-        v = vec4("4,5")   -> v = <4,5,0,0>        
+        v = vec4("4,5")   -> v = <4,5,0,0>
         """
-        
+
         if len(args)==0:
             self.x, self.y, self.z, self.w = (0.0, 0.0, 0.0, 0.0)
 
@@ -82,7 +82,7 @@ class vec4:
         elif len(args)==2:
             self.x, self.y = args
             self.z, self.w = (0.0, 0.0)
-            
+
         elif len(args)==3:
             self.x, self.y, self.z = args
             self.w = 0.0

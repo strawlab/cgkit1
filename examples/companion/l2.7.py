@@ -30,7 +30,7 @@ def ColorCube(n,s):
                 RiScale(s,s,s)
                 UnitCube()
                 RiTransformEnd()
-                
+
     RiAttributeEnd()
 
 
@@ -39,7 +39,7 @@ def UnitCube():
     square = [[.5,.5,.5],[-.5,.5,.5],[-.5,-.5,.5],[.5,-.5,.5]]
 
     RiTransformBegin()
-    
+
     # far square
     RiPolygon(RI_P, square)
 
@@ -72,8 +72,8 @@ def UnitCube():
     RiPolygon(RI_P, square)
 
     RiTransformEnd()
-    
-          
+
+
 
 RiBegin(RI_NULL)
 RiLightSource("distantlight")

@@ -40,7 +40,7 @@ def updateInfoModule():
     Updates the info module so that the version string contains the
     current date and time.
     """
-    
+
     infomod = "cgkitinfo.py"
     tmpname = "__cgkitinfo.py"
 
@@ -110,7 +110,7 @@ def updateInfoModule():
         print 'Replacing module failed: Could not rename file "%s"'%tmpname
         print 'Please rename the file "%s" into "%s" manually.'%(tmpname,infomod)
         sys.exit(1)
-            
+
 
 ######################################################################
 

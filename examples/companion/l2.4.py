@@ -36,8 +36,8 @@ def UnitCube():
     # top face
     RiRotate(180.0, 1.0, 0.0, 0.0)
     RiPolygon(RI_P, square)
-    
-          
+
+
 
 RiBegin(RI_NULL)
 RiLightSource("distantlight")
