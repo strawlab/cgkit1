@@ -22,9 +22,9 @@ from Cython.Build import cythonize
 setup(name="cgkit1",
       version="1.2.1", # also update cgkitinfo.py
       description="Python Computer Graphics Kit",
-      author="Matthias Baas",
-      author_email="baas@ira.uka.de",
-      url="http://cgkit.sourceforge.net",
+      maintainer="Andrew Straw",
+      maintainer_email="strawman@astraw.com",
+      url="https://github.com/strawlab/cgkit1",
       license="BSD license, see license.txt",
       py_modules=["cgkitinfo",
                   "pycgtypes.vec3","pycgtypes.mat3",
