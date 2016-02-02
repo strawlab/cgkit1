@@ -20,7 +20,7 @@ from Cython.Build import cythonize
 ######################################################################
 
 setup(name="cgkit1",
-      version="1.2.1", # also update cgkitinfo.py
+      version="1.2.2", # also update cgkitinfo.py
       description="Python Computer Graphics Kit",
       maintainer="Andrew Straw",
       maintainer_email="strawman@astraw.com",
