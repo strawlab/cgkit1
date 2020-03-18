@@ -1,2 +1,2 @@
-global-include *.pyx
-global-include *.pxd
+include cgtypes.pyx
+exclude cgtypes.c
