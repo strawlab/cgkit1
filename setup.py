@@ -21,7 +21,7 @@ from Cython.Build import cythonize
 
 setup(
     name="cgkit1",
-    version="1.2.3",  # also update cgkitinfo.py
+    version="1.2.4",  # also update cgkitinfo.py
     description="Python Computer Graphics Kit",
     maintainer="Andrew Straw",
     maintainer_email="strawman@astraw.com",
