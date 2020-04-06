@@ -15,14 +15,23 @@ from __future__ import print_function
 
 from distutils.core import setup, Extension
 import shutil, os, sys, os.path, time
+from io import open
 from Cython.Build import cythonize
+from os import path
 
 ######################################################################
+
+# read the contents of README.md
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
+    long_description = f.read()
 
 setup(
     name="cgkit1",
     version="1.2.4",  # also update cgkitinfo.py
-    description="Python Computer Graphics Kit",
+    description="Python Computer Graphics Kit v1",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     maintainer="Andrew Straw",
     maintainer_email="strawman@astraw.com",
     url="https://github.com/strawlab/cgkit1",
