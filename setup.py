@@ -19,17 +19,21 @@ from Cython.Build import cythonize
 
 ######################################################################
 
-setup(name="cgkit1",
-      version="1.2.3", # also update cgkitinfo.py
-      description="Python Computer Graphics Kit",
-      maintainer="Andrew Straw",
-      maintainer_email="strawman@astraw.com",
-      url="https://github.com/strawlab/cgkit1",
-      license="BSD license, see license.txt",
-      py_modules=["cgkitinfo",
-                  "pycgtypes.vec3","pycgtypes.mat3",
-                  "pycgtypes.vec4","pycgtypes.mat4","pycgtypes.quat",
-                  ],
-      ext_modules=cythonize([Extension("cgtypes", ["cgtypes.pyx"]),
-                   ]),
-      )
+setup(
+    name="cgkit1",
+    version="1.2.3",  # also update cgkitinfo.py
+    description="Python Computer Graphics Kit",
+    maintainer="Andrew Straw",
+    maintainer_email="strawman@astraw.com",
+    url="https://github.com/strawlab/cgkit1",
+    license="BSD license, see license.txt",
+    py_modules=[
+        "cgkitinfo",
+        "pycgtypes.vec3",
+        "pycgtypes.mat3",
+        "pycgtypes.vec4",
+        "pycgtypes.mat4",
+        "pycgtypes.quat",
+    ],
+    ext_modules=cythonize([Extension("cgtypes", ["cgtypes.pyx"]),]),
+)
