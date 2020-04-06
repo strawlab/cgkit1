@@ -4,3 +4,4 @@ build
 cgtypes.so
 MANIFEST
 dist
+pip-wheel-metadata
