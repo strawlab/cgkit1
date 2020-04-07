@@ -1,6 +1,7 @@
 # cgkit1
 
 [![build](https://github.com/strawlab/cgkit1/workflows/build-and-test/badge.svg?branch=master)](https://github.com/strawlab/cgkit1/actions?query=branch%3Amaster)
+[![PyPI version](https://badge.fury.io/py/cgkit1.svg)](https://badge.fury.io/py/cgkit1)
 
 This is a fork of Matthias Bass's python-cgkit v1.2.0.
 
