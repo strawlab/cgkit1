@@ -13,7 +13,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from distutils.core import setup, Extension
+from setuptools import setup, Extension
 import shutil, os, sys, os.path, time
 from io import open
 from Cython.Build import cythonize
