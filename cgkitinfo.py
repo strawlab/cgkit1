@@ -14,7 +14,6 @@ from __future__ import unicode_literals
 # specified in the file license.txt.
 ####################################################################
 
-version_info = (1, 2, 4, "final")  # also update setup.py
-
-# The following line is replaced by the setup script
-version = "1.2.4"
+# also update setup.py
+version_info = (1, 2, 5, "final")
+version = "1.2.5"

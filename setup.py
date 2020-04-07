@@ -28,7 +28,7 @@ with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="cgkit1",
-    version="1.2.4",  # also update cgkitinfo.py
+    version="1.2.5",  # also update cgkitinfo.py
     description="Python Computer Graphics Kit v1",
     long_description=long_description,
     long_description_content_type="text/markdown",
