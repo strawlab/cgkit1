@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# cython: language_level=2
 ######################################################################
 # cgtypes - vec3, vec4, mat3, mat4, quat
 #
