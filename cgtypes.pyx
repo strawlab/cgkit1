@@ -123,18 +123,18 @@ cdef class vec3:
         elif arglen==1:
             T = type(args[0])
             # scalar
-            if T==float or T==int or T==long:
+            if T is float or T is int or T is long:
                 self.x = args[0]
                 self.y = self.x
                 self.z = self.x
             # vec3
-            elif T==vec3:
+            elif T is vec3:
                 v = args[0]
                 self.x = v.x
                 self.y = v.y
                 self.z = v.z
             # String
-            elif T==str or T==unicode:
+            elif T is str or T is unicode:
                 s=args[0].replace(","," ").replace("  "," ").strip().split(" ")
                 if s==[""]:
                     s=[]
@@ -289,13 +289,13 @@ cdef class vec3:
         ta = type(a)
         tb = type(b)
 
-        if ta==vec3:
+        if ta is vec3:
             va = a
-            if tb==vec3:
+            if tb is vec3:
                 # vec3*vec3   (dot product a*b)
                 vb = b
                 return va.x*vb.x + va.y*vb.y + va.z*vb.z
-            elif tb==float or tb==int or tb==long:
+            elif tb is float or tb is int or tb is long:
                 # vec3*scalar
                 res = vec3()
                 r   = b
@@ -303,15 +303,15 @@ cdef class vec3:
                 res.y = va.y*r
                 res.z = va.z*r
                 return res
-            elif tb==mat3:
+            elif tb is mat3:
                 # vec3*mat3
                 return b.__rmul__(a)
-            elif tb==mat4:
+            elif tb is mat4:
                 # vec3*mat4
                 return b.__rmul__(a)
 
-        elif ta==float or ta==int or ta==long:
-            if tb==vec3:
+        elif ta is float or ta is int or ta is long:
+            if tb is vec3:
                 # scalar*vec3
                 res = vec3()
                 vb  = b
@@ -335,7 +335,7 @@ cdef class vec3:
 
         tb = type(b)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             # vec3/scalar
             res = vec3()
             r = b
@@ -360,7 +360,7 @@ cdef class vec3:
 
         tb = type(b)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             # vec3%scalar
             res = vec3()
             r = b
@@ -370,7 +370,7 @@ cdef class vec3:
             res.y = _fmod(self.y,r)
             res.z = _fmod(self.z,r)
             return res
-        elif tb==vec3:
+        elif tb is vec3:
             # vec3%vec3
             res = vec3()
             vb = b
@@ -449,7 +449,7 @@ cdef class vec3:
         """
         cdef double r
         tb = type(other)
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r=other
             self.x=self.x*r
             self.y=self.y*r
@@ -468,7 +468,7 @@ cdef class vec3:
         """
         cdef double r
         tb = type(other)
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r=other
             if fabs(r)<=eps:
                 raise ZeroDivisionError,"vec3 division"
@@ -492,7 +492,7 @@ cdef class vec3:
 
         tb = type(b)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             # vec3%=scalar
             r = b
             if fabs(r)<=eps:
@@ -501,7 +501,7 @@ cdef class vec3:
             self.y = _fmod(self.y,r)
             self.z = _fmod(self.z,r)
             return self
-        elif tb==vec3:
+        elif tb is vec3:
             # vec3%=vec3
             vb = b
             if fabs(vb.x)<=eps or fabs(vb.y)<=eps or fabs(vb.z)<=eps:
@@ -856,20 +856,20 @@ cdef class vec4:
         elif arglen==1:
             T = type(args[0])
             # scalar
-            if T==float or T==int or T==long:
+            if T is float or T is int or T is long:
                 self.x = args[0]
                 self.y = self.x
                 self.z = self.x
                 self.w = self.x
             # vec4
-            elif T==vec4:
+            elif T is vec4:
                 v = args[0]
                 self.x = v.x
                 self.y = v.y
                 self.z = v.z
                 self.w = v.w
             # String
-            elif T==str or T==unicode:
+            elif T is str or T is unicode:
                 s=args[0].replace(","," ").replace("  "," ").strip().split(" ")
                 if s==[""]:
                     s=[]
@@ -1042,13 +1042,13 @@ cdef class vec4:
         ta = type(a)
         tb = type(b)
 
-        if ta==vec4:
+        if ta is vec4:
             va = a
-            if tb==vec4:
+            if tb is vec4:
                 # vec4*vec4   (dot product a*b)
                 vb = b
                 return va.x*vb.x + va.y*vb.y + va.z*vb.z + va.w*vb.w
-            elif tb==float or tb==int or tb==long:
+            elif tb is float or tb is int or tb is long:
                 # vec4*scalar
                 res = vec4()
                 r   = b
@@ -1057,11 +1057,11 @@ cdef class vec4:
                 res.z = va.z*r
                 res.w = va.w*r
                 return res
-            elif tb==mat4:
+            elif tb is mat4:
                 # vec4*mat4
                 return b.__rmul__(a)
-        elif ta==float or ta==int or ta==long:
-            if tb==vec4:
+        elif ta is float or ta is int or ta is long:
+            if tb is vec4:
                 # scalar*vec4
                 res = vec4()
                 vb  = b
@@ -1087,7 +1087,7 @@ cdef class vec4:
 
         tb = type(b)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             # vec4/scalar
             res = vec4()
             r = b
@@ -1113,7 +1113,7 @@ cdef class vec4:
 
         tb = type(b)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             # vec4%scalar
             res = vec4()
             r = b
@@ -1124,7 +1124,7 @@ cdef class vec4:
             res.z = _fmod(self.z,r)
             res.w = _fmod(self.w,r)
             return res
-        elif tb==vec4:
+        elif tb is vec4:
             # vec4%vec4
             res = vec4()
             vb = b
@@ -1208,7 +1208,7 @@ cdef class vec4:
         """
         cdef double r
         tb = type(other)
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r=other
             self.x=self.x*r
             self.y=self.y*r
@@ -1228,7 +1228,7 @@ cdef class vec4:
         """
         cdef double r
         tb = type(other)
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r=other
             if fabs(r)<=eps:
                 raise ZeroDivisionError,"vec4 division"
@@ -1253,7 +1253,7 @@ cdef class vec4:
 
         tb = type(b)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             # vec4%=scalar
             r = b
             if fabs(r)<=eps:
@@ -1263,7 +1263,7 @@ cdef class vec4:
             self.z = _fmod(self.z,r)
             self.w = _fmod(self.w,r)
             return self
-        elif tb==vec4:
+        elif tb is vec4:
             # vec4%=vec4
             vb = b
             if (fabs(vb.x)<=eps or fabs(vb.y)<=eps or
@@ -1468,7 +1468,7 @@ cdef class mat3:
         elif arglen==1:
             T = type(args[0])
             # scalar
-            if T==float or T==int or T==long:
+            if T is float or T is int or T is long:
                 self.m11 = args[0]
                 self.m12 = 0.0
                 self.m13 = 0.0
@@ -1480,7 +1480,7 @@ cdef class mat3:
                 self.m33 = self.m11
 
             # mat3
-            elif T==mat3:
+            elif T is mat3:
                 B = args[0]
                 self.m11 = B.m11
                 self.m12 = B.m12
@@ -1492,7 +1492,7 @@ cdef class mat3:
                 self.m32 = B.m32
                 self.m33 = B.m33
             # String
-            elif T==str or T==unicode:
+            elif T is str or T is unicode:
                 s=args[0].replace(","," ").replace("  "," ").strip().split(" ")
                 if s==[""]:
                     s=[]
@@ -1684,10 +1684,10 @@ cdef class mat3:
         tb = type(b)
 
         # mat3 on the left?
-        if ta==mat3:
+        if ta is mat3:
             ma = a
             # mat3 on the right?
-            if tb==mat3:
+            if tb is mat3:
                 # mat3*mat3
                 res = mat3()
                 mb = b
@@ -1702,7 +1702,7 @@ cdef class mat3:
                 res.m33 = ma.m31*mb.m13+ma.m32*mb.m23+ma.m33*mb.m33
                 return res
             # vec3 on the right?
-            elif tb==vec3:
+            elif tb is vec3:
                 # mat3*vec3
                 wres = vec3()
                 wb   = b
@@ -1711,7 +1711,7 @@ cdef class mat3:
                 wres.z = ma.m31*wb.x + ma.m32*wb.y + ma.m33*wb.z
                 return wres
             # Scalar on the right?
-            elif tb==float or tb==int or tb==long:
+            elif tb is float or tb is int or tb is long:
                 res = mat3()
                 r = b
                 res.m11 = ma.m11*r
@@ -1726,7 +1726,7 @@ cdef class mat3:
                 return res
 
         # vec3 on the left? (then there must be a mat3 on the right)
-        elif ta==vec3:
+        elif ta is vec3:
             # vec3*mat3
             wres = vec3()
             wa   = a
@@ -1737,7 +1737,7 @@ cdef class mat3:
             return wres
 
         # Scalar on the left? (then there must be a mat3 on the right)
-        elif ta==float or ta==int or ta==long:
+        elif ta is float or ta is int or ta is long:
             res = mat3()
             r  = a
             mb = b
@@ -1763,7 +1763,7 @@ cdef class mat3:
 
         tb = type(b)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             # mat3/scalar
             res = mat3()
             r = b
@@ -1789,7 +1789,7 @@ cdef class mat3:
 
         tb = type(other)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r = other
             if fabs(r)<=eps:
                 raise ZeroDivisionError,"mat3 modulo"
@@ -1805,7 +1805,7 @@ cdef class mat3:
             res.m33 = _fmod(self.m33, r)
             return res
 
-        elif tb==mat3:
+        elif tb is mat3:
             mb = other
 
             if (fabs(mb.m11)<=eps or fabs(mb.m12)<=eps or fabs(mb.m13)<=eps or
@@ -1894,7 +1894,7 @@ cdef class mat3:
         cdef mat3 mb
 
         tb = type(other)
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r=other
             self.m11 = self.m11*r
             self.m12 = self.m12*r
@@ -1906,7 +1906,7 @@ cdef class mat3:
             self.m32 = self.m32*r
             self.m33 = self.m33*r
             return self
-        elif tb==mat3:
+        elif tb is mat3:
             mb = other
             a = self.m11
             b = self.m12
@@ -1935,7 +1935,7 @@ cdef class mat3:
         """
         cdef double r
         tb = type(other)
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r=other
             if fabs(r)<=eps:
                 raise ZeroDivisionError,"mat3 division"
@@ -1960,7 +1960,7 @@ cdef class mat3:
 
         tb = type(b)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r = b
             if fabs(r)<=eps:
                 raise ZeroDivisionError,"mat3 modulo"
@@ -1974,7 +1974,7 @@ cdef class mat3:
             self.m32 = _fmod(self.m32, r)
             self.m33 = _fmod(self.m33, r)
             return self
-        elif tb==mat3:
+        elif tb is mat3:
             mb = b
             if (fabs(mb.m11)<=eps or fabs(mb.m12)<=eps or fabs(mb.m13)<=eps or
                 fabs(mb.m21)<=eps or fabs(mb.m22)<=eps or fabs(mb.m23)<=eps or
@@ -2004,7 +2004,7 @@ cdef class mat3:
         cdef int i,j
 
         T=type(key)
-        if T==int or T==long:
+        if T is int or T is long:
             i = key
             if i==0:
                 return vec3(self.m11, self.m21, self.m31)
@@ -2014,7 +2014,7 @@ cdef class mat3:
                 return vec3(self.m13, self.m23, self.m33)
             else:
                 raise IndexError, "index out of range"
-        elif T==tuple:
+        elif T is tuple:
             if len(key)!=2:
                 raise ValueError, "index tuple must be a 2-tuple"
             i = key[0]
@@ -2055,7 +2055,7 @@ cdef class mat3:
         cdef double v
 
         T=type(key)
-        if T==int or T==long:
+        if T is int or T is long:
             if len(value)!=3:
                 raise ValueError, "3-sequence expected"
             i = key
@@ -2073,7 +2073,7 @@ cdef class mat3:
                 self.m33 = value[2]
             else:
                 raise IndexError, "index out of range"
-        elif T==tuple:
+        elif T is tuple:
             if len(key)!=2:
                 raise ValueError, "index tuple must be a 2-tuple"
             i = key[0]
@@ -2576,7 +2576,7 @@ cdef class mat4:
         elif arglen==1:
             T = type(args[0])
             # scalar
-            if T==float or T==int or T==long:
+            if T is float or T is int or T is long:
                 self.m11 = args[0]
                 self.m12 = 0.0
                 self.m13 = 0.0
@@ -2594,7 +2594,7 @@ cdef class mat4:
                 self.m43 = 0.0
                 self.m44 = self.m11
             # mat4
-            elif T==mat4:
+            elif T is mat4:
                 B = args[0]
                 self.m11 = B.m11
                 self.m12 = B.m12
@@ -2613,7 +2613,7 @@ cdef class mat4:
                 self.m43 = B.m43
                 self.m44 = B.m44
             # String
-            elif T==str or T==unicode:
+            elif T is str or T is unicode:
                 s=args[0].replace(","," ").replace("  "," ").strip().split(" ")
                 if s==[""]:
                     s=[]
@@ -2897,10 +2897,10 @@ cdef class mat4:
         tb = type(b)
 
         # mat4 on the left?
-        if ta==mat4:
+        if ta is mat4:
             ma = a
             # mat4 on the right?
-            if tb==mat4:
+            if tb is mat4:
                 # mat4*mat4
                 res = mat4()
                 mb = b
@@ -2922,7 +2922,7 @@ cdef class mat4:
                 res.m44 = ma.m41*mb.m14+ma.m42*mb.m24+ma.m43*mb.m34+ma.m44*mb.m44
                 return res
             # vec4 on the right?
-            elif tb==vec4:
+            elif tb is vec4:
                 # mat4*vec4
                 wres = vec4()
                 wb   = b
@@ -2932,7 +2932,7 @@ cdef class mat4:
                 wres.w = ma.m41*wb.x + ma.m42*wb.y + ma.m43*wb.z + ma.m44*wb.w
                 return wres
             # vec3 on the right?
-            elif tb==vec3:
+            elif tb is vec3:
                 # mat4*vec3
                 vres = vec3()
                 vb   = b
@@ -2946,7 +2946,7 @@ cdef class mat4:
                     vres.z = vres.z/w
                 return vres
             # Scalar on the right?
-            elif tb==float or tb==int or tb==long:
+            elif tb is float or tb is int or tb is long:
                 res = mat4()
                 r = b
                 res.m11 = ma.m11*r
@@ -2968,7 +2968,7 @@ cdef class mat4:
                 return res
 
         # vec4 on the left? (then there must be a mat4 on the right)
-        elif ta==vec4:
+        elif ta is vec4:
             # vec4*mat4
             wres = vec4()
             wa   = a
@@ -2980,7 +2980,7 @@ cdef class mat4:
             return wres
 
         # vec3 on the left? (then there must be a mat4 on the right)
-        elif ta==vec3:
+        elif ta is vec3:
             # vec3*mat4
             vres = vec3()
             va   = a
@@ -2996,7 +2996,7 @@ cdef class mat4:
             return vres
 
         # Scalar on the left? (then there must be a mat4 on the right)
-        elif ta==float or ta==int or ta==long:
+        elif ta is float or ta is int or ta is long:
             res = mat4()
             r  = a
             mb = b
@@ -3036,7 +3036,7 @@ cdef class mat4:
 
         tb = type(b)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             # mat4/scalar
             res = mat4()
             r = b
@@ -3076,7 +3076,7 @@ cdef class mat4:
 
         tb = type(other)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r = other
             if fabs(r)<=eps:
                 raise ZeroDivisionError,"mat4 modulo"
@@ -3099,7 +3099,7 @@ cdef class mat4:
             res.m44 = _fmod(self.m44, r)
             return res
 
-        elif tb==mat4:
+        elif tb is mat4:
             mb = other
 
             if (fabs(mb.m11)<=eps or fabs(mb.m12)<=eps or fabs(mb.m13)<=eps or
@@ -3243,7 +3243,7 @@ cdef class mat4:
         cdef mat4 mb
 
         tb = type(other)
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r=other
             self.m11 = self.m11*r
             self.m12 = self.m12*r
@@ -3262,7 +3262,7 @@ cdef class mat4:
             self.m43 = self.m43*r
             self.m44 = self.m44*r
             return self
-        elif tb==mat4:
+        elif tb is mat4:
             mb = other
             a = self.m11
             b = self.m12
@@ -3305,7 +3305,7 @@ cdef class mat4:
         """
         cdef double r
         tb = type(other)
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r=other
             if fabs(r)<=eps:
                 raise ZeroDivisionError,"mat4 division"
@@ -3337,7 +3337,7 @@ cdef class mat4:
 
         tb = type(b)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r = b
             if fabs(r)<=eps:
                 raise ZeroDivisionError,"mat4 modulo"
@@ -3358,7 +3358,7 @@ cdef class mat4:
             self.m43 = _fmod(self.m43, r)
             self.m44 = _fmod(self.m44, r)
             return self
-        elif tb==mat4:
+        elif tb is mat4:
             mb = b
             if (fabs(mb.m11)<=eps or fabs(mb.m12)<=eps or fabs(mb.m13)<=eps or
                 fabs(mb.m14)<=eps or
@@ -3399,7 +3399,7 @@ cdef class mat4:
         cdef int i,j
 
         T=type(key)
-        if T==int or T==long:
+        if T is int or T is long:
             i = key
             if i==0:
                 return vec4(self.m11, self.m21, self.m31, self.m41)
@@ -3411,7 +3411,7 @@ cdef class mat4:
                 return vec4(self.m14, self.m24, self.m34, self.m44)
             else:
                 raise IndexError, "index out of range"
-        elif T==tuple:
+        elif T is tuple:
             if len(key)!=2:
                 raise ValueError, "index tuple must be a 2-tuple"
             i = key[0]
@@ -3467,7 +3467,7 @@ cdef class mat4:
         cdef double v
 
         T=type(key)
-        if T==int or T==long:
+        if T is int or T is long:
             if len(value)!=4:
                 raise ValueError, "4-sequence expected"
             i = key
@@ -3493,7 +3493,7 @@ cdef class mat4:
                 self.m44 = value[3]
             else:
                 raise IndexError, "index out of range"
-        elif T==tuple:
+        elif T is tuple:
             if len(key)!=2:
                 raise ValueError, "index tuple must be a 2-tuple"
             i = key[0]
@@ -4392,20 +4392,20 @@ cdef class quat:
         elif arglen==1:
             T = type(args[0])
             # scalar
-            if T==float or T==int or T==long:
+            if T is float or T is int or T is long:
                 self.w = args[0]
                 self.x = 0.0
                 self.y = 0.0
                 self.z = 0.0
             # quat
-            elif T==quat:
+            elif T is quat:
                 q = args[0]
                 self.w = q.w
                 self.x = q.x
                 self.y = q.y
                 self.z = q.z
             # String
-            elif T==str or T==unicode:
+            elif T is str or T is unicode:
                 s=args[0].replace(","," ").replace("  "," ").strip().split(" ")
                 if s==[""]:
                     s=[]
@@ -4556,9 +4556,9 @@ cdef class quat:
         ta = type(a)
         tb = type(b)
 
-        if ta==quat:
+        if ta is quat:
             va = a
-            if tb==quat:
+            if tb is quat:
                 # quat*quat
                 vb = b
                 res = quat()
@@ -4567,7 +4567,7 @@ cdef class quat:
                 res.y = va.w*vb.y + va.y*vb.w - va.x*vb.z + va.z*vb.x
                 res.z = va.w*vb.z + va.z*vb.w + va.x*vb.y - va.y*vb.x
                 return res
-            elif tb==float or tb==int or tb==long:
+            elif tb is float or tb is int or tb is long:
                 # quat*scalar
                 res = quat()
                 r   = b
@@ -4576,8 +4576,8 @@ cdef class quat:
                 res.y = va.y*r
                 res.z = va.z*r
                 return res
-        elif ta==float or ta==int or ta==long:
-            if tb==quat:
+        elif ta is float or ta is int or ta is long:
+            if tb is quat:
                 # scalar*quat
                 res = quat()
                 vb  = b
@@ -4602,7 +4602,7 @@ cdef class quat:
 
         tb = type(b)
 
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             # quat/scalar
             res = quat()
             r = b
@@ -4680,7 +4680,7 @@ cdef class quat:
 
         T = type(other)
 
-        if T==quat:
+        if T is quat:
             # quat*=quat
             vb = other
             w = self.w*vb.w - self.x*vb.x - self.y*vb.y - self.z*vb.z
@@ -4693,7 +4693,7 @@ cdef class quat:
             self.z = z
             return self
 
-        elif T==float or T==int or T==long:
+        elif T is float or T is int or T is long:
             # quat*=scalar
             r   = other
             self.w = self.w*r
@@ -4710,7 +4710,7 @@ cdef class quat:
         """
         cdef double r
         tb = type(other)
-        if tb==float or tb==int or tb==long:
+        if tb is float or tb is int or tb is long:
             r=other
             if fabs(r)<=eps:
                 raise ZeroDivisionError,"quat division"
