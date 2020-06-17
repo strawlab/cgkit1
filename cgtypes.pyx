@@ -12,16 +12,7 @@
 ####################################################################
 
 # Some math functions
-cdef extern from "math.h":
-    double sqrt(double x)
-    double fabs(double x)
-    double sin(double x)
-    double cos(double x)
-    double tan(double x)
-    double acos(double x)
-    double exp(double x)
-    double log(double x)
-    double atan2(double y, double x)
+from libc.math cimport sqrt, fabs, sin, cos, tan, acos, exp, log, atan2
 
 # Threshold for comparisons
 cdef double eps
