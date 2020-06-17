@@ -18,12 +18,6 @@ from libc.math cimport sqrt, fabs, sin, cos, tan, acos, exp, log, atan2
 cdef double eps
 eps = 1E-16
 
-# Forward declarations
-cdef class vec3
-cdef class vec4
-cdef class mat3
-cdef class mat4
-
 ######################################################################
 
 # _fmod: A modulo function that also works with negative a
