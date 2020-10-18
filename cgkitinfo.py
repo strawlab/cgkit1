@@ -15,5 +15,5 @@ from __future__ import unicode_literals
 ####################################################################
 
 # also update setup.py
-version_info = (1, 2, 5, "final")
-version = "1.2.5"
+version_info = (1, 2, 6, "final")
+version = "1.2.6"
