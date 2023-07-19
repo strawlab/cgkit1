@@ -324,6 +324,10 @@ cdef class vec3:
         raise TypeError, "unsupported operand type for *"
 
     def __div__(vec3 a, b):
+        # Python 2
+        return vec3.__truediv__(a,b)
+
+    def __truediv__(vec3 a, b):
         """Division by scalar
 
         >>> a=vec3(1.0, 0.5, -1.8)
@@ -1075,6 +1079,10 @@ cdef class vec4:
         raise TypeError, "unsupported operand type for *"
 
     def __div__(vec4 a, b):
+        # Python 2
+        return vec4.__truediv__(a,b)
+
+    def __truediv__(vec4 a, b):
         """Division by scalar.
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
@@ -1756,6 +1764,10 @@ cdef class mat3:
         raise TypeError, "unsupported operand type for *"
 
     def __div__(mat3 a, b):
+        # Python 2
+        return mat3.__truediv__(a,b)
+
+    def __truediv__(mat3 a, b):
         """Division.
         """
         cdef mat3 res
@@ -3022,6 +3034,10 @@ cdef class mat4:
         raise TypeError, "unsupported operand type for *"
 
     def __div__(mat4 a, b):
+        # Python 2
+        return mat4.__truediv__(a,b)
+
+    def __truediv__(mat4 a, b):
         """Division.
 
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
@@ -4591,6 +4607,10 @@ cdef class quat:
         raise TypeError, "unsupported operand type for *"
 
     def __div__(quat a, b):
+        # Python 2
+        return quat.__truediv__(a,b)
+
+    def __truediv__(quat a, b):
         """Division.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
