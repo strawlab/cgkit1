@@ -15,5 +15,5 @@ from __future__ import unicode_literals
 ####################################################################
 
 # also update pyproject.toml
-version_info = (1, 2, 7, "final")
-version = "1.2.7"
+version_info = (1, 2, 8, "final")
+version = "1.2.8"
