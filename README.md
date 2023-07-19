@@ -5,8 +5,8 @@
 
 This is a fork of Matthias Bass's python-cgkit v1.2.0.
 
-It has been updated to be compatible with Python 2 and 3 and has the
-renderman and noise generation code removed.
+It has been updated to be compatible with Python 3 and has the renderman and
+noise generation code removed.
 
 <hr>
 Python Computer Graphics Kit v1.2.0
@@ -22,36 +22,15 @@ non-RenderMan compliant renderers like POV-Ray, for example.
 
 ## Installing the package
 
-The package uses the Python distutils, so compiling and installing
-looks the same on every platform, you simply have to call:
+The package uses the Python
+[build](https://pypa-build.readthedocs.io/en/stable/), so compiling and
+installing looks the same on every platform, you simply have to call:
 
 ```
-python setup.py install
+python -m build
 ```
 
 This will compile the C-modules and install everything in the standard
-location. See the distutils documentation that are coming with Python
-if you have to install somewhere else.
-If you've updated the sources for cgkit I recommend to delete the "build"
-directory before compiling so that all the old code is out of the way.
+location.
 
-The cgtypes module uses Pyrex (v0.9 or higher required) to generate
-the C source file. The generated C file is included in the source
-package, so you only need Pyrex if you want to modify the cgtypes module.
-
-Once installed you can check the examples in the examples directory.
-
-IMPORTANT:
-
-If you've installed a version before v1.0beta3 you have to remove
-the directory Lib/site-packages/cgtypes in your Python distribution.
-Otherwise Python will access the old Python types instead of the
-new C types (which are located directly in Lib/site-packages).
-
-## Documentation
-
-The documentation has to be downloaded separatly or you can browse
-it online. Whatever you prefer, you should point your browser to:
-
-http://cgkit.sourceforge.net
-
+The cgtypes module uses Cython.
