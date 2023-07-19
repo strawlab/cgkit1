@@ -14,6 +14,6 @@ from __future__ import unicode_literals
 # specified in the file license.txt.
 ####################################################################
 
-# also update setup.py
+# also update pyproject.toml
 version_info = (1, 2, 7, "final")
 version = "1.2.7"

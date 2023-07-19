@@ -1,6 +1,19 @@
+[project]
+name = "cgkit1"
+version = "1.2.7"                                                        # also update cgkitinfo.py
+description = "Python Computer Graphics Kit v1"
+readme = "README.md"
+requires-python = ">= 3.7"
+license.file = "license.txt"
+authors = [{ name = "Matthias Bass", email = "baas@ira.uka.de" }]
+maintainers = [{ name = "Andrew Straw", email = "strawman@astraw.com" }]
+
+urls.homepage = "https://github.com/strawlab/cgkit1"
+
 [build-system]
+# following advice in https://stackoverflow.com/a/66479252
 requires = [
-    "setuptools>=44.1",
+    "setuptools>=61",
     "cython>=0.29,!=0.29.20",
     "wheel>=0.34.2",
     "twine>=1.15.0",
