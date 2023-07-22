@@ -15,7 +15,5 @@ urls.homepage = "https://github.com/strawlab/cgkit1"
 requires = [
     "setuptools>=61",
     "cython>=0.29,!=0.29.20",
-    "wheel>=0.34.2",
-    "twine>=1.15.0",
 ]
 build-backend = "setuptools.build_meta"
