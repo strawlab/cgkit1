@@ -14,7 +14,7 @@ urls.homepage = "https://github.com/strawlab/cgkit1"
 # following advice in https://stackoverflow.com/a/66479252
 requires = [
     "setuptools>=61",
-    "cython>=0.29,!=0.29.20",
+    "cython >= 3.0",
 ]
 build-backend = "setuptools.build_meta"
 
