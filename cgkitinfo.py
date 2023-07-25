@@ -10,5 +10,5 @@
 ####################################################################
 
 # also update pyproject.toml
-version_info = (1, 2, 8, "final")
-version = "1.2.8"
+version_info = (1, 3, 0, "final")
+version = "1.3.0"
