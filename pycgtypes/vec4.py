@@ -7,11 +7,6 @@
 # specified in the file license.txt.
 ####################################################################
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import types, math
 
 
@@ -113,11 +108,11 @@ class vec4:
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> b=vec4(-0.3, 0.75, 0.5, 0.6)
         >>> c=vec4(-0.3, 0.75, 0.5, 0.6)
-        >>> print a==b
+        >>> print(a==b)
         0
-        >>> print b==c
+        >>> print(b==c)
         1
-        >>> print a==None
+        >>> print(a==None)
         0
         """
         if isinstance(other, vec4):
@@ -131,11 +126,11 @@ class vec4:
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> b=vec4(-0.3, 0.75, 0.5, 0.6)
         >>> c=vec4(-0.3, 0.75, 0.5, 0.6)
-        >>> print a!=b
+        >>> print(a!=b)
         1
-        >>> print b!=c
+        >>> print(b!=c)
         0
-        >>> print a!=None
+        >>> print(a!=None)
         1
         """
         if isinstance(other, vec4):
@@ -149,7 +144,7 @@ class vec4:
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> b=vec4(-0.3, 0.75, 0.5, 0.3)
-        >>> print a+b
+        >>> print(a+b)
         (0.7000, 1.2500, -1.3000, 0.5000)
         """
         if isinstance(other, vec4):
@@ -162,7 +157,7 @@ class vec4:
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> b=vec4(-0.3, 0.75, 0.5, 0.3)
-        >>> print a-b
+        >>> print(a-b)
         (1.3000, -0.2500, -2.3000, -0.1000)
         """
         if isinstance(other, vec4):
@@ -175,11 +170,11 @@ class vec4:
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> b=vec4(-0.3, 0.75, 0.5, 0.3)
-        >>> print a*2.0
+        >>> print(a*2.0)
         (2.0000, 1.0000, -3.6000, 0.4000)
-        >>> print 2.0*a
+        >>> print(2.0*a)
         (2.0000, 1.0000, -3.6000, 0.4000)
-        >>> print a*b
+        >>> print(a*b)
         -0.765
         """
 
@@ -204,7 +199,7 @@ class vec4:
         """Division by scalar
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
-        >>> print a/2.0
+        >>> print(a/2.0)
         (0.5000, 0.2500, -0.9000, 0.1000)
         """
         T = type(other)
@@ -219,7 +214,7 @@ class vec4:
         """Modulo (component wise)
 
         >>> a=vec4(3.0, 2.5, -1.8, 0.2)
-        >>> print a%2.0
+        >>> print(a%2.0)
         (1.0000, 0.5000, 0.2000, 0.2000)
         """
         T = type(other)
@@ -236,7 +231,7 @@ class vec4:
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> b=vec4(-0.3, 0.75, 0.5, 0.3)
         >>> a+=b
-        >>> print a
+        >>> print(a)
         (0.7000, 1.2500, -1.3000, 0.5000)
         """
         if isinstance(other, vec4):
@@ -254,7 +249,7 @@ class vec4:
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> b=vec4(-0.3, 0.75, 0.5, 0.3)
         >>> a-=b
-        >>> print a
+        >>> print(a)
         (1.3000, -0.2500, -2.3000, -0.1000)
         """
         if isinstance(other, vec4):
@@ -271,7 +266,7 @@ class vec4:
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> a*=2.0
-        >>> print a
+        >>> print(a)
         (2.0000, 1.0000, -3.6000, 0.4000)
         """
         T = type(other)
@@ -290,7 +285,7 @@ class vec4:
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> a/=2.0
-        >>> print a
+        >>> print(a)
         (0.5000, 0.2500, -0.9000, 0.1000)
         """
         T = type(other)
@@ -309,7 +304,7 @@ class vec4:
 
         >>> a=vec4(3.0, 2.5, -1.8, 0.2)
         >>> a%=2.0
-        >>> print a
+        >>> print(a)
         (1.0000, 0.5000, 0.2000, 0.2000)
         """
         T = type(other)
@@ -327,7 +322,7 @@ class vec4:
         """Negation
 
         >>> a=vec4(3.0, 2.5, -1.8, 0.2)
-        >>> print -a
+        >>> print(-a)
         (-3.0000, -2.5000, 1.8000, -0.2000)
         """
         return vec4(-self.x, -self.y, -self.z, -self.w)
@@ -335,7 +330,7 @@ class vec4:
     def __pos__(self):
         """
         >>> a=vec4(3.0, 2.5, -1.8, 0.2)
-        >>> print +a
+        >>> print(+a)
         (3.0000, 2.5000, -1.8000, 0.2000)
         """
         return vec4(+self.x, +self.y, +self.z, +self.w)
@@ -346,7 +341,7 @@ class vec4:
         abs(v) is equivalent to v.length().
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
-        >>> print abs(a)
+        >>> print(abs(a))
         2.12837966538
         """
         return math.sqrt(self*self)
@@ -360,13 +355,13 @@ class vec4:
         """Return a component by index (0-based)
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
-        >>> print a[0]
+        >>> print(a[0])
         1.0
-        >>> print a[1]
+        >>> print(a[1])
         0.5
-        >>> print a[2]
+        >>> print(a[2])
         -1.8
-        >>> print a[3]
+        >>> print(a[3])
         0.2
         """
         T=type(key)
@@ -385,7 +380,7 @@ class vec4:
 
         >>> a=vec4()
         >>> a[0]=1.5; a[1]=0.7; a[2]=-0.3; a[3]=0.2
-        >>> print a
+        >>> print(a)
         (1.5000, 0.7000, -0.3000, 0.2000)
         """
         T=type(key)
@@ -406,7 +401,7 @@ class vec4:
         v.length() is equivalent to abs(v).
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
-        >>> print a.length()
+        >>> print(a.length())
         2.12837966538
         """
 
@@ -416,7 +411,7 @@ class vec4:
         """Return normalized vector.
 
         >>> a=vec4(1.0, 0.5, -1.8, 1.2)
-        >>> print a.normalize()
+        >>> print(a.normalize())
         (0.4107, 0.2053, -0.7392, 0.4928)
         """
 
@@ -435,3 +430,4 @@ def _test():
 if __name__=="__main__":
 
     _test()
+

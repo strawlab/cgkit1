@@ -246,7 +246,7 @@ cdef class vec3:
 
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
-        >>> print a+b
+        >>> print(a+b)
         (0.7000, 1.2500, -1.3000)
         """
         cdef vec3 res
@@ -261,7 +261,7 @@ cdef class vec3:
 
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
-        >>> print a-b
+        >>> print(a-b)
         (1.3000, -0.2500, -2.3000)
         """
         cdef vec3 res
@@ -276,11 +276,11 @@ cdef class vec3:
 
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
-        >>> print a*2.0
+        >>> print(a*2.0)
         (2.0000, 1.0000, -3.6000)
-        >>> print 2.0*a
+        >>> print(2.0*a)
         (2.0000, 1.0000, -3.6000)
-        >>> print a*b
+        >>> print(a*b)
         -0.825
         """
         cdef vec3 res, va, vb
@@ -331,7 +331,7 @@ cdef class vec3:
         """Division by scalar
 
         >>> a=vec3(1.0, 0.5, -1.8)
-        >>> print a/2.0
+        >>> print(a/2.0)
         (0.5000, 0.2500, -0.9000)
         """
         cdef vec3 res
@@ -356,7 +356,7 @@ cdef class vec3:
         """Modulo (component wise).
 
         >>> a=vec3(3.0, 2.5, -1.8)
-        >>> print a%2.0
+        >>> print(a%2.0)
         (1.0000, 0.5000, 0.2000)
         """
         cdef vec3 res, vb
@@ -391,7 +391,7 @@ cdef class vec3:
         """Negation
 
         >>> a=vec3(3.0, 2.5, -1.8)
-        >>> print -a
+        >>> print(-a)
         (-3.0000, -2.5000, 1.8000)
         """
         cdef vec3 res
@@ -404,7 +404,7 @@ cdef class vec3:
     def __pos__(self):
         """
         >>> a=vec3(3.0, 2.5, -1.8)
-        >>> print +a
+        >>> print(+a)
         (3.0000, 2.5000, -1.8000)
         """
         cdef vec3 res
@@ -421,7 +421,7 @@ cdef class vec3:
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
         >>> a+=b
-        >>> print a
+        >>> print(a)
         (0.7000, 1.2500, -1.3000)
         """
         self.x=self.x+other.x
@@ -435,7 +435,7 @@ cdef class vec3:
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
         >>> a-=b
-        >>> print a
+        >>> print(a)
         (1.3000, -0.2500, -2.3000)
         """
         self.x=self.x-other.x
@@ -448,7 +448,7 @@ cdef class vec3:
 
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> a*=2.0
-        >>> print a
+        >>> print(a)
         (2.0000, 1.0000, -3.6000)
         """
         cdef double r
@@ -467,7 +467,7 @@ cdef class vec3:
 
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> a/=2.0
-        >>> print a
+        >>> print(a)
         (0.5000, 0.2500, -0.9000)
         """
         cdef double r
@@ -488,7 +488,7 @@ cdef class vec3:
 
         >>> a=vec3(3.0, 2.5, -1.8)
         >>> a%=2.0
-        >>> print a
+        >>> print(a)
         (1.0000, 0.5000, 0.2000)
         """
         cdef vec3 vb
@@ -524,7 +524,7 @@ cdef class vec3:
         abs(v) is equivalent to v.length().
 
         >>> a=vec3(1.0, 0.5, -1.8)
-        >>> print abs(a)
+        >>> print(abs(a))
         2.11896201004
         """
         cdef double a
@@ -559,11 +559,11 @@ cdef class vec3:
         """Return a component by index (0-based)
 
         >>> a=vec3(1.0, 0.5, -1.8)
-        >>> print a[0]
+        >>> print(a[0])
         1.0
-        >>> print a[1]
+        >>> print(a[1])
         0.5
-        >>> print a[2]
+        >>> print(a[2])
         -1.8
         """
         cdef int k
@@ -584,7 +584,7 @@ cdef class vec3:
 
         >>> a=vec3()
         >>> a[0]=1.5; a[1]=0.7; a[2]=-0.3
-        >>> print a
+        >>> print(a)
         (1.5000, 0.7000, -0.3000)
         """
         cdef int k
@@ -606,7 +606,7 @@ cdef class vec3:
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
         >>> c=a.cross(b)
-        >>> print c
+        >>> print(c)
         (1.6000, 0.0400, 0.9000)
         """
         cdef vec3 res
@@ -626,7 +626,7 @@ cdef class vec3:
         v.length() is equivalent to abs(v).
 
         >>> a=vec3(1.0, 0.5, -1.8)
-        >>> print a.length()
+        >>> print(a.length())
         2.11896201004
         """
         cdef double a
@@ -637,7 +637,7 @@ cdef class vec3:
         """Return normalized vector.
 
         >>> a=vec3(1.0, 0.5, -1.8)
-        >>> print a.normalize()
+        >>> print(a.normalize())
         (0.4719, 0.2360, -0.8495)
         """
         cdef vec3 res
@@ -658,7 +658,7 @@ cdef class vec3:
 
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
-        >>> print a.angle(b)
+        >>> print(a.angle(b))
         1.99306755584
         """
 
@@ -686,7 +686,7 @@ cdef class vec3:
         N is the surface normal which has to be of unit length.
 
         >>> a=vec3(1.0, -1.0, 0.0)
-        >>> print a.reflect(vec3(0,1,0)
+        >>> print(a.reflect(vec3(0,1,0)))
         (1.0000, 1.0000, 0.0000)
         """
         cdef vec3 res
@@ -708,7 +708,7 @@ cdef class vec3:
         of total internal reflection.
 
         >>> a=vec3(1.0, -1.5, 0.8)
-        >>> print a.refract(vec3(0,1,0), 1.33)
+        >>> print(a.refract(vec3(0,1,0), 1.33))
         (1.3300, -1.7920, 1.0640)
         """
         cdef vec3 res
@@ -738,7 +738,7 @@ cdef class vec3:
         self*self.ortho()==0).
 
         >>> a=vec3(1.0, -1.5, 0.8)
-        >>> print round(a*a.ortho(),8)
+        >>> print(round(a*a.ortho(),8))
         0.0
         """
         cdef vec3 res
@@ -1000,7 +1000,7 @@ cdef class vec4:
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> b=vec4(-0.3, 0.75, 0.5, 0.3)
-        >>> print a+b
+        >>> print(a+b)
         (0.7000, 1.2500, -1.3000, 0.5000)
         """
         cdef vec4 res
@@ -1016,7 +1016,7 @@ cdef class vec4:
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> b=vec4(-0.3, 0.75, 0.5, 0.3)
-        >>> print a-b
+        >>> print(a-b)
         (1.3000, -0.2500, -2.3000, -0.1000)
         """
         cdef vec4 res
@@ -1032,11 +1032,11 @@ cdef class vec4:
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> b=vec4(-0.3, 0.75, 0.5, 0.3)
-        >>> print a*2.0
+        >>> print(a*2.0)
         (2.0000, 1.0000, -3.6000, 0.4000)
-        >>> print 2.0*a
+        >>> print(2.0*a)
         (2.0000, 1.0000, -3.6000, 0.4000)
-        >>> print a*b
+        >>> print(a*b)
         -0.765
         """
 
@@ -1086,7 +1086,7 @@ cdef class vec4:
         """Division by scalar.
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
-        >>> print a/2.0
+        >>> print(a/2.0)
         (0.5000, 0.2500, -0.9000, 0.1000)
         """
 
@@ -1113,7 +1113,7 @@ cdef class vec4:
         """Modulo (component wise)
 
         >>> a=vec4(3.0, 2.5, -1.8, 0.2)
-        >>> print a%2.0
+        >>> print(a%2.0)
         (1.0000, 0.5000, 0.2000, 0.2000)
         """
         cdef vec4 res, vb
@@ -1151,7 +1151,7 @@ cdef class vec4:
         """Negation.
 
         >>> a=vec4(3.0, 2.5, -1.8, 0.2)
-        >>> print -a
+        >>> print(-a)
         (-3.0000, -2.5000, 1.8000, -0.2000)
         """
         cdef vec4 res
@@ -1165,7 +1165,7 @@ cdef class vec4:
     def __pos__(self):
         """
         >>> a=vec4(3.0, 2.5, -1.8, 0.2)
-        >>> print +a
+        >>> print(+a)
         (3.0000, 2.5000, -1.8000, 0.2000)
         """
         cdef vec4 res
@@ -1182,7 +1182,7 @@ cdef class vec4:
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> b=vec4(-0.3, 0.75, 0.5, 0.3)
         >>> a+=b
-        >>> print a
+        >>> print(a)
         (0.7000, 1.2500, -1.3000, 0.5000)
         """
         self.x=self.x+other.x
@@ -1197,7 +1197,7 @@ cdef class vec4:
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> b=vec4(-0.3, 0.75, 0.5, 0.3)
         >>> a-=b
-        >>> print a
+        >>> print(a)
         (1.3000, -0.2500, -2.3000, -0.1000)
         """
         self.x=self.x-other.x
@@ -1211,7 +1211,7 @@ cdef class vec4:
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> a*=2.0
-        >>> print a
+        >>> print(a)
         (2.0000, 1.0000, -3.6000, 0.4000)
         """
         cdef double r
@@ -1231,7 +1231,7 @@ cdef class vec4:
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
         >>> a/=2.0
-        >>> print a
+        >>> print(a)
         (0.5000, 0.2500, -0.9000, 0.1000)
         """
         cdef double r
@@ -1253,7 +1253,7 @@ cdef class vec4:
 
         >>> a=vec4(3.0, 2.5, -1.8, 0.2)
         >>> a%=2.0
-        >>> print a
+        >>> print(a)
         (1.0000, 0.5000, 0.2000, 0.2000)
         """
         cdef vec4 vb
@@ -1292,7 +1292,7 @@ cdef class vec4:
         abs(v) is equivalent to v.length().
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
-        >>> print abs(a)
+        >>> print(abs(a))
         2.12837966538
         """
         cdef double a
@@ -1331,13 +1331,13 @@ cdef class vec4:
         """Return a component by index (0-based).
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
-        >>> print a[0]
+        >>> print(a[0])
         1.0
-        >>> print a[1]
+        >>> print(a[1])
         0.5
-        >>> print a[2]
+        >>> print(a[2])
         -1.8
-        >>> print a[3]
+        >>> print(a[3])
         0.2
         """
         cdef int k
@@ -1359,7 +1359,7 @@ cdef class vec4:
 
         >>> a=vec4()
         >>> a[0]=1.5; a[1]=0.7; a[2]=-0.3; a[3]=0.2
-        >>> print a
+        >>> print(a)
         (1.5000, 0.7000, -0.3000, 0.2000)
         """
         cdef int k
@@ -1382,7 +1382,7 @@ cdef class vec4:
         v.length() is equivalent to abs(v).
 
         >>> a=vec4(1.0, 0.5, -1.8, 0.2)
-        >>> print a.length()
+        >>> print(a.length())
         2.12837966538
         """
         cdef double a
@@ -1393,7 +1393,7 @@ cdef class vec4:
         """Return normalized vector.
 
         >>> a=vec4(1.0, 0.5, -1.8, 1.2)
-        >>> print a.normalize()
+        >>> print(a.normalize())
         (0.4107, 0.2053, -0.7392, 0.4928)
         """
         cdef vec4 res
@@ -2820,7 +2820,7 @@ cdef class mat4:
         """Matrix addition.
 
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-        >>> print M+M
+        >>> print(M+M)
         [   2.0000,    4.0000,    6.0000,    8.0000]
         [  10.0000,   12.0000,   14.0000,   16.0000]
         [  18.0000,   20.0000,   22.0000,   24.0000]
@@ -2850,7 +2850,7 @@ cdef class mat4:
         """Matrix subtraction.
 
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-        >>> print M-M
+        >>> print(M-M)
         [   0.0000,    0.0000,    0.0000,    0.0000]
         [   0.0000,    0.0000,    0.0000,    0.0000]
         [   0.0000,    0.0000,    0.0000,    0.0000]
@@ -2880,24 +2880,24 @@ cdef class mat4:
         """Multiplication.
 
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-        >>> print M*2.0
+        >>> print(M*2.0)
         [   2.0000,    4.0000,    6.0000,    8.0000]
         [  10.0000,   12.0000,   14.0000,   16.0000]
         [  18.0000,   20.0000,   22.0000,   24.0000]
         [  26.0000,   28.0000,   30.0000,   32.0000]
-        >>> print 2.0*M
+        >>> print(2.0*M)
         [   2.0000,    4.0000,    6.0000,    8.0000]
         [  10.0000,   12.0000,   14.0000,   16.0000]
         [  18.0000,   20.0000,   22.0000,   24.0000]
         [  26.0000,   28.0000,   30.0000,   32.0000]
-        >>> print M*M
+        >>> print(M*M)
         [  90.0000,  100.0000,  110.0000,  120.0000]
         [ 202.0000,  228.0000,  254.0000,  280.0000]
         [ 314.0000,  356.0000,  398.0000,  440.0000]
         [ 426.0000,  484.0000,  542.0000,  600.0000]
-        >>> print M*_vec3(1,2,3)
+        >>> print(M*_vec3(1,2,3))
         (0.1765, 0.4510, 0.7255)
-        >>> print _vec3(1,2,3)*M
+        >>> print(_vec3(1,2,3)*M)
         (0.7083, 0.8056, 0.9028)
         """
         cdef mat4 ma, mb, res
@@ -3041,7 +3041,7 @@ cdef class mat4:
         """Division.
 
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-        >>> print M/2.0
+        >>> print(M/2.0)
         [   0.5000,    1.0000,    1.5000,    2.0000]
         [   2.5000,    3.0000,    3.5000,    4.0000]
         [   4.5000,    5.0000,    5.5000,    6.0000]
@@ -3082,7 +3082,7 @@ cdef class mat4:
         """Modulo.
 
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-        >>> print M%5.0
+        >>> print(M%5.0)
         [   1.0000,    2.0000,    3.0000,    4.0000]
         [   0.0000,    1.0000,    2.0000,    3.0000]
         [   4.0000,    0.0000,    1.0000,    2.0000]
@@ -3155,7 +3155,7 @@ cdef class mat4:
         """Negation.
 
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-        >>> print -M
+        >>> print(-M)
         [  -1.0000,   -2.0000,   -3.0000,   -4.0000]
         [  -5.0000,   -6.0000,   -7.0000,   -8.0000]
         [  -9.0000,  -10.0000,  -11.0000,  -12.0000]
@@ -3184,7 +3184,7 @@ cdef class mat4:
     def __pos__(self):
         """
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-        >>> print +M
+        >>> print(+M)
         [   1.0000,    2.0000,    3.0000,    4.0000]
         [   5.0000,    6.0000,    7.0000,    8.0000]
         [   9.0000,   10.0000,   11.0000,   12.0000]
@@ -3676,9 +3676,9 @@ cdef class mat4:
         rowmajor to 1, you'll get the list in row-major order.
 
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-        >>> print M.toList()
+        >>> print(M.toList())
         [1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15, 4, 8, 12, 16]
-        >>> print M.toList(rowmajor=1)
+        >>> print(M.toList(rowmajor=1))
         [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
         """
         if rowmajor:
@@ -3696,7 +3696,7 @@ cdef class mat4:
     def identity(self):
         """Return identity matrix.
 
-        >>> print mat4().identity()
+        >>> print(mat4().identity())
         [   1.0000,    0.0000,    0.0000,    0.0000]
         [   0.0000,    1.0000,    0.0000,    0.0000]
         [   0.0000,    0.0000,    1.0000,    0.0000]
@@ -3726,7 +3726,7 @@ cdef class mat4:
         """Return transpose matrix.
 
         >>> M=mat4(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-        >>> print M.transpose()
+        >>> print(M.transpose())
         [   1.0000,    5.0000,    9.0000,   13.0000]
         [   2.0000,    6.0000,   10.0000,   14.0000]
         [   3.0000,    7.0000,   11.0000,   15.0000]
@@ -3756,7 +3756,7 @@ cdef class mat4:
         """Return determinant.
 
         >>> M=mat4(2.0,0,0,0, 0,2.0,0,0, 0,0,2.0,0, 0,0,0,2.0)
-        >>> print M.determinant()
+        >>> print(M.determinant())
         16.0
         """
         return self.m11*self.m22*self.m33*self.m44 \
@@ -3828,7 +3828,7 @@ cdef class mat4:
         """Return inverse matrix.
 
         >>> M=mat4(0,-2.0,0,0, 2.0,0,0,0, 0,0,2,0, 0,0,0,2)
-        >>> print M.inverse()
+        >>> print(M.inverse())
         [   0.0000,    0.5000,    0.0000,    0.0000]
         [  -0.5000,    0.0000,    0.0000,    0.0000]
         [   0.0000,    0.0000,    0.5000,    0.0000]
@@ -4529,7 +4529,7 @@ cdef class quat:
         """Addition.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print q+q
+        >>> print(q+q)
         (1.9378, 0.4320, 0.2160, 0.1080)
         """
         cdef quat res
@@ -4544,7 +4544,7 @@ cdef class quat:
         """Subtraction.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print q-q
+        >>> print(q-q)
         (0.0000, 0.0000, 0.0000, 0.0000)
         """
         cdef quat res
@@ -4559,11 +4559,11 @@ cdef class quat:
         """Multiplication.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print q*2.0
+        >>> print(q*2.0)
         (1.9378, 0.4320, 0.2160, 0.1080)
-        >>> print 2.0*q
+        >>> print(2.0*q)
         (1.9378, 0.4320, 0.2160, 0.1080)
-        >>> print q*q
+        >>> print(q*q)
         (0.8775, 0.4186, 0.2093, 0.1046)
         """
         cdef quat res, va, vb
@@ -4614,7 +4614,7 @@ cdef class quat:
         """Division.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print q/2.0
+        >>> print(q/2.0)
         (0.4844, 0.1080, 0.0540, 0.0270)
         """
         cdef quat res
@@ -4648,7 +4648,7 @@ cdef class quat:
         """Negation.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print -q
+        >>> print(-q)
         (-0.9689, -0.2160, -0.1080, -0.0540)
         """
         cdef quat res
@@ -4662,7 +4662,7 @@ cdef class quat:
     def __pos__(self):
         """
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print +q
+        >>> print(+q)
         (0.9689, 0.2160, 0.1080, 0.0540)
         """
         cdef quat res
@@ -4771,7 +4771,7 @@ cdef class quat:
         """Return magnitude.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print round(abs(q),5)
+        >>> print(round(abs(q),5))
         1.0
         """
         cdef double a
@@ -4782,7 +4782,7 @@ cdef class quat:
         """Return conjugate.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print q.conjugate()
+        >>> print(q.conjugate())
         (0.9689, -0.2160, -0.1080, -0.0540)
         """
         cdef quat res
@@ -4798,9 +4798,9 @@ cdef class quat:
 
         >>> q=quat(0.9, 0.5, 0.2, 0.3)
         >>> q=q.normalize()
-        >>> print q
+        >>> print(q)
         (0.8250, 0.4583, 0.1833, 0.2750)
-        >>> print abs(q)
+        >>> print(abs(q))
         1.0
         """
         cdef quat res
@@ -4822,7 +4822,7 @@ cdef class quat:
         """Return inverse.
 
         >>> q=quat(0.9, 0.5, 0.2, 0.3)
-        >>> print q.inverse()
+        >>> print(q.inverse())
         (0.7563, -0.4202, -0.1681, -0.2521)
         """
         cdef quat res
@@ -4844,9 +4844,9 @@ cdef class quat:
 
         >>> q=quat(0.9, 0.5, 0.2, 0.3)
         >>> angle, axis = q.toAngleAxis()
-        >>> print round(angle,4)
+        >>> print(round(angle,4))
         1.2011
-        >>> print axis
+        >>> print(axis)
         (0.8111, 0.3244, 0.4867)
         """
         cdef quat q
@@ -5109,3 +5109,4 @@ copy_reg.constructor(_vec4construct)
 copy_reg.constructor(_mat3construct)
 copy_reg.constructor(_mat4construct)
 copy_reg.constructor(_quatconstruct)
+

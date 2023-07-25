@@ -7,11 +7,6 @@
 # specified in the file license.txt.
 ####################################################################
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import types, math, copy
 from .vec3 import vec3 as _vec3
 

@@ -7,11 +7,6 @@
 # specified in the file license.txt.
 ####################################################################
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import types, math
 
 # vec3
@@ -103,11 +98,11 @@ class vec3:
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
         >>> c=vec3(-0.3, 0.75, 0.5)
-        >>> print a==b
+        >>> print(a==b)
         0
-        >>> print b==c
+        >>> print(b==c)
         1
-        >>> print a==None
+        >>> print(a==None)
         0
         """
         if isinstance(other, vec3):
@@ -121,11 +116,11 @@ class vec3:
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
         >>> c=vec3(-0.3, 0.75, 0.5)
-        >>> print a!=b
+        >>> print(a!=b)
         1
-        >>> print b!=c
+        >>> print(b!=c)
         0
-        >>> print a!=None
+        >>> print(a!=None)
         1
         """
         if isinstance(other, vec3):
@@ -139,7 +134,7 @@ class vec3:
 
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
-        >>> print a+b
+        >>> print(a+b)
         (0.7000, 1.2500, -1.3000)
         """
         if isinstance(other, vec3):
@@ -152,7 +147,7 @@ class vec3:
 
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
-        >>> print a-b
+        >>> print(a-b)
         (1.3000, -0.2500, -2.3000)
         """
         if isinstance(other, vec3):
@@ -165,11 +160,11 @@ class vec3:
 
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
-        >>> print a*2.0
+        >>> print(a*2.0)
         (2.0000, 1.0000, -3.6000)
-        >>> print 2.0*a
+        >>> print(2.0*a)
         (2.0000, 1.0000, -3.6000)
-        >>> print a*b
+        >>> print(a*b)
         -0.825
         """
 
@@ -194,7 +189,7 @@ class vec3:
         """Division by scalar
 
         >>> a=vec3(1.0, 0.5, -1.8)
-        >>> print a/2.0
+        >>> print(a/2.0)
         (0.5000, 0.2500, -0.9000)
         """
         T = type(other)
@@ -209,7 +204,7 @@ class vec3:
         """Modulo (component wise)
 
         >>> a=vec3(3.0, 2.5, -1.8)
-        >>> print a%2.0
+        >>> print(a%2.0)
         (1.0000, 0.5000, 0.2000)
         """
         T = type(other)
@@ -226,7 +221,7 @@ class vec3:
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
         >>> a+=b
-        >>> print a
+        >>> print(a)
         (0.7000, 1.2500, -1.3000)
         """
         if isinstance(other, vec3):
@@ -243,7 +238,7 @@ class vec3:
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
         >>> a-=b
-        >>> print a
+        >>> print(a)
         (1.3000, -0.2500, -2.3000)
         """
         if isinstance(other, vec3):
@@ -259,7 +254,7 @@ class vec3:
 
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> a*=2.0
-        >>> print a
+        >>> print(a)
         (2.0000, 1.0000, -3.6000)
         """
         T = type(other)
@@ -277,7 +272,7 @@ class vec3:
 
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> a/=2.0
-        >>> print a
+        >>> print(a)
         (0.5000, 0.2500, -0.9000)
         """
         T = type(other)
@@ -295,7 +290,7 @@ class vec3:
 
         >>> a=vec3(3.0, 2.5, -1.8)
         >>> a%=2.0
-        >>> print a
+        >>> print(a)
         (1.0000, 0.5000, 0.2000)
         """
         T = type(other)
@@ -312,7 +307,7 @@ class vec3:
         """Negation
 
         >>> a=vec3(3.0, 2.5, -1.8)
-        >>> print -a
+        >>> print(-a)
         (-3.0000, -2.5000, 1.8000)
         """
         return vec3(-self.x, -self.y, -self.z)
@@ -320,7 +315,7 @@ class vec3:
     def __pos__(self):
         """
         >>> a=vec3(3.0, 2.5, -1.8)
-        >>> print +a
+        >>> print(+a)
         (3.0000, 2.5000, -1.8000)
         """
         return vec3(+self.x, +self.y, +self.z)
@@ -331,7 +326,7 @@ class vec3:
         abs(v) is equivalent to v.length().
 
         >>> a=vec3(1.0, 0.5, -1.8)
-        >>> print abs(a)
+        >>> print(abs(a))
         2.11896201004
         """
         return math.sqrt(self*self)
@@ -345,11 +340,11 @@ class vec3:
         """Return a component by index (0-based)
 
         >>> a=vec3(1.0, 0.5, -1.8)
-        >>> print a[0]
+        >>> print(a[0])
         1.0
-        >>> print a[1]
+        >>> print(a[1])
         0.5
-        >>> print a[2]
+        >>> print(a[2])
         -1.8
         """
         T=type(key)
@@ -367,7 +362,7 @@ class vec3:
 
         >>> a=vec3()
         >>> a[0]=1.5; a[1]=0.7; a[2]=-0.3
-        >>> print a
+        >>> print(a)
         (1.5000, 0.7000, -0.3000)
         """
         T=type(key)
@@ -386,7 +381,7 @@ class vec3:
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
         >>> c=a.cross(b)
-        >>> print c
+        >>> print(c)
         (1.6000, 0.0400, 0.9000)
         """
 
@@ -404,7 +399,7 @@ class vec3:
         v.length() is equivalent to abs(v).
 
         >>> a=vec3(1.0, 0.5, -1.8)
-        >>> print a.length()
+        >>> print(a.length())
         2.11896201004
         """
 
@@ -414,7 +409,7 @@ class vec3:
         """Return normalized vector.
 
         >>> a=vec3(1.0, 0.5, -1.8)
-        >>> print a.normalize()
+        >>> print(a.normalize())
         (0.4719, 0.2360, -0.8495)
         """
 
@@ -426,7 +421,7 @@ class vec3:
 
         >>> a=vec3(1.0, 0.5, -1.8)
         >>> b=vec3(-0.3, 0.75, 0.5)
-        >>> print a.angle(b)
+        >>> print(a.angle(b))
         1.99306755584
         """
 
@@ -441,7 +436,7 @@ class vec3:
         N is the surface normal which has to be of unit length.
 
         >>> a=vec3(1.0, 0.5, -1.8)
-        >>> print a.reflect(vec3(1,0,1))
+        >>> print(a.reflect(vec3(1,0,1)))
         (2.6000, 0.5000, -0.2000)
         """
 
@@ -456,7 +451,7 @@ class vec3:
         of total internal reflection.
 
         >>> a=vec3(1.0, -1.5, 0.8)
-        >>> print a.refract(vec3(0,1,0), 1.33)
+        >>> print(a.refract(vec3(0,1,0), 1.33))
         (1.3300, -1.7920, 1.0640)
         """
 
@@ -474,7 +469,7 @@ class vec3:
         self*self.ortho()==0).
 
         >>> a=vec3(1.0, -1.5, 0.8)
-        >>> print round(a*a.ortho(),8)
+        >>> print(round(a*a.ortho(),8))
         0.0
         """
 
@@ -506,3 +501,4 @@ if __name__=="__main__":
 #    b = vec3("-2,0.5,1E10")
 
 #    print a.angle(b)
+

@@ -7,11 +7,6 @@
 # specified in the file license.txt.
 ####################################################################
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import types, math
 from .vec3 import vec3 as _vec3
 from .mat3 import mat3 as _mat3
@@ -100,11 +95,11 @@ class quat:
         >>> a=quat(1,2,3,4)
         >>> b=quat(6,7,8,9)
         >>> c=quat(6,7,8,9)
-        >>> print a==b
+        >>> print(a==b)
         0
-        >>> print b==c
+        >>> print(b==c)
         1
-        >>> print a==None
+        >>> print(a==None)
         0
         """
         if isinstance(other, quat):
@@ -118,11 +113,11 @@ class quat:
         >>> a=quat(1,2,3,4)
         >>> b=quat(6,7,8,9)
         >>> c=quat(6,7,8,9)
-        >>> print a!=b
+        >>> print(a!=b)
         1
-        >>> print b!=c
+        >>> print(b!=c)
         0
-        >>> print a!=None
+        >>> print(a!=None)
         1
         """
         if isinstance(other, quat):
@@ -135,7 +130,7 @@ class quat:
         """Addition.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print q+q
+        >>> print(q+q)
         (1.9378, 0.4320, 0.2160, 0.1080)
         """
         if isinstance(other, quat):
@@ -148,7 +143,7 @@ class quat:
         """Subtraction.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print q-q
+        >>> print(q-q)
         (0.0000, 0.0000, 0.0000, 0.0000)
         """
         if isinstance(other, quat):
@@ -161,11 +156,11 @@ class quat:
         """Multiplication.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print q*2.0
+        >>> print(q*2.0)
         (1.9378, 0.4320, 0.2160, 0.1080)
-        >>> print 2.0*q
+        >>> print(2.0*q)
         (1.9378, 0.4320, 0.2160, 0.1080)
-        >>> print q*q
+        >>> print(q*q)
         (0.8775, 0.4186, 0.2093, 0.1046)
         """
         T = type(other)
@@ -194,7 +189,7 @@ class quat:
         """Division.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print q/2.0
+        >>> print(q/2.0)
         (0.4844, 0.1080, 0.0540, 0.0270)
         """
         T = type(other)
@@ -210,7 +205,7 @@ class quat:
         """Negation.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print -q
+        >>> print(-q)
         (-0.9689, -0.2160, -0.1080, -0.0540)
         """
         return quat(-self.w, -self.x, -self.y, -self.z)
@@ -218,7 +213,7 @@ class quat:
     def __pos__(self):
         """
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print +q
+        >>> print(+q)
         (0.9689, 0.2160, 0.1080, 0.0540)
         """
         return quat(+self.w, +self.x, +self.y, +self.z)
@@ -227,7 +222,7 @@ class quat:
         """Return magnitude.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print round(abs(q),5)
+        >>> print(round(abs(q),5))
         1.0
         """
         return math.sqrt(self.w*self.w + self.x*self.x +
@@ -237,7 +232,7 @@ class quat:
         """Return conjugate.
 
         >>> q=quat(0.9689, 0.2160, 0.1080, 0.0540)
-        >>> print q.conjugate()
+        >>> print(q.conjugate())
         (0.9689, -0.2160, -0.1080, -0.0540)
         """
         return quat(self.w, -self.x, -self.y, -self.z)
@@ -247,9 +242,9 @@ class quat:
 
         >>> q=quat(0.9, 0.5, 0.2, 0.3)
         >>> q=q.normalize()
-        >>> print q
+        >>> print(q)
         (0.8250, 0.4583, 0.1833, 0.2750)
-        >>> print abs(q)
+        >>> print(abs(q))
         1.0
         """
         nlen = 1.0/abs(self)
@@ -259,7 +254,7 @@ class quat:
         """Return inverse.
 
         >>> q=quat(0.9, 0.5, 0.2, 0.3)
-        >>> print q.inverse()
+        >>> print(q.inverse())
         (0.7563, -0.4202, -0.1681, -0.2521)
         """
         len_2 = self.w*self.w + self.x*self.x + self.y*self.y + self.z*self.z
@@ -270,9 +265,9 @@ class quat:
 
         >>> q=quat(0.9, 0.5, 0.2, 0.3)
         >>> angle, axis = q.toAngleAxis()
-        >>> print round(angle,4)
+        >>> print(round(angle,4))
         1.2011
-        >>> print axis
+        >>> print(axis)
         (0.8111, 0.3244, 0.4867)
         """
 
@@ -388,3 +383,4 @@ if __name__=="__main__":
 #    print m
 #    w=quat(m)
 #    print w
+
