@@ -10,4 +10,4 @@ from .quat import quat
 # CGKit version
 # Applies to the whole kit and is a cheap way for applications to check
 # which version is installed
-_CGKit_version = "1.2.0"
+_CGKit_version = "1.2.8" # keep in sync with pyproject.toml
