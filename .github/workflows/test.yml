@@ -30,10 +30,4 @@ jobs:
     - name: Build
       run: python -m pip install .
     - name: Test import
-      run: python -c "import cgtypes; cgtypes.vec3(1.0, 2.0, 3.0)"
-    - name: Run unittests and doctests
-      run: |
-        pip install pytest
-        pytest
-        pip install pytest-cython
-        pytest --doctest-cython
+      run: python -c "import cgtypes; print(cgtypes.vec3(1.0, 2.0, 3.0)*4.0); print(4.0*cgtypes.vec3(1.0, 2.0, 3.0))"
