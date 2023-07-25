@@ -44,7 +44,7 @@ class vec4:
         elif len(args)==1:
             T = type(args[0])
             # scalar
-            if T==float or T==int or T==int:
+            if T==float or T==int:
                 self.x, self.y, self.z, self.w = (args[0], args[0], args[0], args[0])
             # vec4
             elif isinstance(args[0], vec4):
@@ -180,7 +180,7 @@ class vec4:
 
         T = type(other)
         # vec4*scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return vec4(self.x*other, self.y*other, self.z*other, self.w*other)
         # vec4*vec4
         if isinstance(other, vec4):
@@ -204,7 +204,7 @@ class vec4:
         """
         T = type(other)
         # vec4/scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return vec4(self.x/other, self.y/other, self.z/other, self.w/other)
         # unsupported
         else:
@@ -219,7 +219,7 @@ class vec4:
         """
         T = type(other)
         # vec4%scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return vec4(self.x%other, self.y%other, self.z%other, self.w%other)
         # unsupported
         else:
@@ -271,7 +271,7 @@ class vec4:
         """
         T = type(other)
         # vec4*=scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             self.x*=other
             self.y*=other
             self.z*=other
@@ -290,7 +290,7 @@ class vec4:
         """
         T = type(other)
         # vec4/=scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             self.x/=other
             self.y/=other
             self.z/=other
@@ -309,7 +309,7 @@ class vec4:
         """
         T = type(other)
         # vec4%=scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             self.x%=other
             self.y%=other
             self.z%=other

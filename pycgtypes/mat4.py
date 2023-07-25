@@ -38,7 +38,7 @@ class mat4:
         # 1 argument (list, scalar or mat4)
         elif len(args)==1:
             T = type(args[0])
-            if T==float or T==int or T==int:
+            if T==float or T==int:
                 self.mlist = [args[0],0.0,0.0,0.0,
                               0.0,args[0],0.0,0.0,
                               0.0,0.0,args[0],0.0,
@@ -154,7 +154,7 @@ class mat4:
         """
         T = type(other)
         # mat4*scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return mat4(list(map(lambda x,other=other: x*other, self.mlist)))
         # mat4*vec3
         if isinstance(other, _vec3):
@@ -200,7 +200,7 @@ class mat4:
     def __rmul__(self, other):
         T = type(other)
         # scalar*mat4
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return mat4(list(map(lambda x,other=other: other*x, self.mlist)))
         # vec4*mat4
         if isinstance(other, _vec4):
@@ -235,7 +235,7 @@ class mat4:
         """
         T = type(other)
         # mat4/scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return mat4(list(map(lambda x,other=other: x/other, self.mlist)))
         # unsupported
         else:
@@ -253,7 +253,7 @@ class mat4:
         """
         T = type(other)
         # mat4%scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return mat4(list(map(lambda x,other=other: x%other, self.mlist)))
         # unsupported
         else:

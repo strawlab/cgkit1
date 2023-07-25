@@ -41,7 +41,7 @@ class quat:
         elif len(args)==1:
             T = type(args[0])
             # Scalar
-            if T==float or T==int or T==int:
+            if T==float or T==int:
                 self.w = args[0]
                 self.x, self.y, self.z = (0.0, 0.0, 0.0)
             # quat
@@ -165,7 +165,7 @@ class quat:
         """
         T = type(other)
         # quat*scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return quat(self.w*other, self.x*other, self.y*other, self.z*other)
         # quat*quat
         if isinstance(other, quat):
@@ -194,7 +194,7 @@ class quat:
         """
         T = type(other)
         # quat/scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return quat(self.w/other, self.x/other, self.y/other, self.z/other)
         # unsupported
         else:

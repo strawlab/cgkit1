@@ -44,7 +44,7 @@ class vec3:
         elif len(args)==1:
             T = type(args[0])
             # scalar
-            if T==float or T==int or T==int:
+            if T==float or T==int:
                 self.x, self.y, self.z = (args[0], args[0], args[0])
             # vec3
             elif isinstance(args[0], vec3):
@@ -170,7 +170,7 @@ class vec3:
 
         T = type(other)
         # vec3*scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return vec3(self.x*other, self.y*other, self.z*other)
         # vec3*vec3
         if isinstance(other, vec3):
@@ -194,7 +194,7 @@ class vec3:
         """
         T = type(other)
         # vec3/scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return vec3(self.x/other, self.y/other, self.z/other)
         # unsupported
         else:
@@ -209,7 +209,7 @@ class vec3:
         """
         T = type(other)
         # vec3%scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return vec3(self.x%other, self.y%other, self.z%other)
         # unsupported
         else:
@@ -259,7 +259,7 @@ class vec3:
         """
         T = type(other)
         # vec3*=scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             self.x*=other
             self.y*=other
             self.z*=other
@@ -277,7 +277,7 @@ class vec3:
         """
         T = type(other)
         # vec3/=scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             self.x/=other
             self.y/=other
             self.z/=other
@@ -295,7 +295,7 @@ class vec3:
         """
         T = type(other)
         # vec3%=scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             self.x%=other
             self.y%=other
             self.z%=other

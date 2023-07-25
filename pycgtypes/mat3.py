@@ -48,7 +48,7 @@ class mat3:
         elif len(args)==1:
             T = type(args[0])
             # Scalar
-            if T==float or T==int or T==int:
+            if T==float or T==int:
                 self.mlist = [args[0],0.0,0.0,
                               0.0,args[0],0.0,
                               0.0,0.0,args[0]]
@@ -121,7 +121,7 @@ class mat3:
     def __mul__(self, other):
         T = type(other)
         # mat3*scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return mat3(list(map(lambda x,other=other: x*other, self.mlist)))
         # mat3*vec3
         if isinstance(other, _vec3):
@@ -151,7 +151,7 @@ class mat3:
     def __rmul__(self, other):
         T = type(other)
         # scalar*mat3
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return mat3(list(map(lambda x,other=other: other*x, self.mlist)))
         # vec3*mat3
         if isinstance(other, _vec3):
@@ -170,7 +170,7 @@ class mat3:
     def __div__(self, other):
         T = type(other)
         # mat3/scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return mat3(list(map(lambda x,other=other: x/other, self.mlist)))
         # unsupported
         else:
@@ -179,7 +179,7 @@ class mat3:
     def __mod__(self, other):
         T = type(other)
         # mat3%scalar
-        if T==float or T==int or T==int:
+        if T==float or T==int:
             return mat3(list(map(lambda x,other=other: x%other, self.mlist)))
         # unsupported
         else:
