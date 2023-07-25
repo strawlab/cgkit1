@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# cython: language_level=2, c_api_binop_methods=True
+# cython: c_api_binop_methods=True
 ######################################################################
 # cgtypes - vec3, vec4, mat3, mat4, quat
 #
