@@ -1,6 +1,10 @@
 Changelog
 =========
 
+Changes from cgkit-1.3.0 to cgkit-1.3.1:
+
+- support for Cython 3.1
+
 Changes from cgkit-1.2.0 to cgkit-1.3.0:
 
 - support for Python 3, support for Cython 3
