@@ -1,6 +1,10 @@
 Changelog
 =========
 
+Changes from cgkit-1.3.1 to cgkit-1.3.2:
+
+- require setuptools 77 and Python 3.9
+
 Changes from cgkit-1.3.0 to cgkit-1.3.1:
 
 - support for Cython 3.1
