@@ -4,7 +4,7 @@ version = "1.3.0"                                                        # also 
 description = "Python Computer Graphics Kit v1"
 readme = "README.md"
 requires-python = ">= 3.8"
-license.file = "license.txt"
+license = "BSD-3-Clause"
 authors = [{ name = "Matthias Bass", email = "baas@ira.uka.de" }]
 maintainers = [{ name = "Andrew Straw", email = "strawman@astraw.com" }]
 
